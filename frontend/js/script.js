@@ -383,7 +383,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
   
   initCharts();
   loadSettings();
-  updateSensors();
   showSection('smart');
   enableSystem();          // <<< важливо!
 
@@ -414,7 +413,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
           body: JSON.stringify({ sensor_type: type, value, unit })
         });
         showNotification('Сенсор додано');
-        updateSensors();
       } catch {
         showNotification('Не вдалося додати сенсор');
       }
@@ -434,7 +432,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
           body: JSON.stringify({ value: newValue })
         });
         showNotification('Значення змінено');
-        updateSensors();
       } catch {
         showNotification('Не вдалося змінити значення');
       }
@@ -447,7 +444,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
       try {
         await apiFetch(`/sensor_data/${id}`, { method: 'DELETE' });
         showNotification('Сенсор видалено');
-        updateSensors();
       } catch {
         showNotification('Не вдалося видалити сенсор');
       }

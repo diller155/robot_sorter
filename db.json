@@ -1445,23 +1445,12 @@
       "id": "plFgvd15YYZgbggj-mtwF",
       "parameter_name": "conveyorSpeed",
       "value": "5"
-    },
-    {
-      "id": "xxxxx",
-      "parameter_name": "sensorInterval",
-      "value": "6"
     }
   ],
   "system_logs": [
     {
-      "id": "TOvD3d4mHl8Dw8Ml6sJn5",
-      "timestamp": "2025-05-22T14:17:59.255Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "J1spN15dzP6UIHOKBfn6x",
-      "timestamp": "2025-05-22T16:38:58.499Z",
+      "id": "Y_fx-1s5nkoOs-fr10sxr",
+      "timestamp": "2025-05-22T17:34:30.439Z",
       "message": "Система увімкнена",
       "level": "info"
     }

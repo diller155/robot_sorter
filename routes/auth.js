@@ -76,16 +76,12 @@ router.get('/auth/validate', (req, res) => {
 
 
 
+
 router.get('/sensor_data', (req, res) => {
-  const all = db.get('sensor_data').value();
-  res.json(all);
+  res.json(db.get('sensor_data').value());
 });
 
 
-
-/** ========== PERSISTENT CRUD sensor_data ========== **/
-
-// Створити новий запис сенсора
 router.post('/sensor_data', (req, res) => {
   const { sensor_type, icon, value, unit, warn } = req.body;
   const newItem = {
@@ -100,7 +96,6 @@ router.post('/sensor_data', (req, res) => {
   db.get('sensor_data').push(newItem).write();
   res.status(201).json(newItem);
 });
-
 // Оновити існуючий запис
 router.put('/sensor_data/:id', (req, res) => {
   const item = db.get('sensor_data').find({ id: req.params.id }).value();
