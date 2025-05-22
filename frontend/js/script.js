@@ -7,25 +7,19 @@ const simulateBtn = document.getElementById('simulateLogsBtn');
 const smartBtn    = document.getElementById('smartSortBtn');
 const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
-const conveyorInput       = document.getElementById('conveyorSpeed');
 const notificationContainer = document.getElementById('notification-container');
-const toggleBtn = document.getElementById('toggleConveyorBtn');
+
 
 
 let sensorBatches = [];    // масив масивів
 let batchIds       = [];   // список batchId, відсортований за зростанням
 let currentBatch   = 0;    // індекс у списку batchIds
 let sensorTimer    = null;
-let conveyorPaused = false;
 
-
-// поточний інтервал (секунди)
-let sensorIntervalSec = 10;
 
 // Стан системи
 let systemActive    = false;
 let sensorInterval  = null;
-let chartInterval   = null;
 let conveyorSettingId = null;
 const chartInstances = {};
 
@@ -367,7 +361,6 @@ function disableSystem() {
   systemActive = false;
   showSection(document.querySelector('.section.active').id);
   clearInterval(sensorInterval);
-  clearInterval(chartInterval);
   updateFooterStatus();
   logSystem('Система вимкнена','warning');
 }
@@ -396,10 +389,13 @@ document.addEventListener('DOMContentLoaded', async()=>{
   // ————— Слайдер для інтервалу оновлення сенсорів —————
   const sensorSlider = document.getElementById('sensorInterval');
   const sensorLabel  = document.getElementById('sensorIntervalLabel');
-
-  // Ініціалізуємо підпис
-  sensorIntervalSec = parseInt(sensorSlider.value, 10);
-  sensorLabel.textContent = sensorIntervalSec;
+  if (sensorSlider && sensorLabel) {
+    sensorLabel.textContent = sensorSlider.value;
+    sensorSlider.addEventListener('input', e => {
+      sensorLabel.textContent = e.target.value;
+      setSensorInterval();
+    });
+  }
 
   
   
@@ -417,6 +413,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
   smartBtn   .addEventListener('click', smartSort);
   enableBtn  .addEventListener('click', enableSystem);
   disableBtn .addEventListener('click', disableSystem);
+  
   conveyorInput.addEventListener('input',()=>{
     if(systemActive) setSensorInterval();
     updateSettings(conveyorInput.value);
