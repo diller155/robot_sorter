@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "skh0kE-41FN3Ixdkn2sNl",
+      "username": "kass_nazarii",
+      "passwordHash": "$2b$10$LEMWf40ATzDz35ktc41FL.u7Dt51kipGULKYMwk0sT2bPcXBvYGbq",
+      "role": "admin"
+    },
+    {
+      "id": "1no2Q7LagqQ4m6K9RCqjd",
+      "username": "operator",
+      "passwordHash": "$2b$10$0Yz7g./.oNJBkZqElD4yuObbJIRWVNwJcnZIk/8xnJwmXkR7q69AG",
+      "role": "operator"
+    }
+  ],
+  "sensor_data": [
+    
+  ],
+  "settings": [
+    {
+      "id": "plFgvd15YYZgbggj-mtwF",
+      "parameter_name": "conveyorSpeed",
+      "value": "5"
+    },
+    {
+      "id": "xxxxx",
+      "parameter_name": "sensorInterval",
+      "value": "3"
+    }
+  ],
+  "system_logs": [
+    {
+      "id": "TOvD3d4mHl8Dw8Ml6sJn5",
+      "timestamp": "2025-05-22T14:17:59.255Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    }
+  ],
+  "sort_events": []
+}

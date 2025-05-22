@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Інтерфейс Робота-Сортувальника</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Панель Керування Роботом</h1>
+  </header>
+  <nav>
+    <a href="#" data-section="smart">Сортування</a>
+    <a href="#" data-section="sensors">Сенсори</a>
+    <a href="#" data-section="log">Журнал</a>
+    <a href="#" data-section="analytics">Аналітика</a>
+    <a href="#" data-section="settings">Налаштування</a>
+
+    <button id="logoutBtn" style="margin-left:auto; background:transparent; border:none; color:#fff; cursor:pointer;">
+    Вийти
+    </button>
+  </nav>
+  <main class="container">
+    <section id="smart" class="section active">
+      <div class="disabled-msg"></div>
+      <div class="section-content">
+        <div class="card">
+          <h2>🧠 Розумне сортування</h2>
+          <div class="sensor-grid" id="smartSensorGrid"></div>
+          <button class="btn" id="smartSortBtn">Розумне сортування</button>
+          <div id="logArea">
+            <h3>Лог рішень:</h3>
+            <div id="logOutput"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sensors" class="section">
+      <div class="disabled-msg"></div>
+      <div class="section-content">
+        <div class="card">
+          <h2>
+            Показники Сенсорів 
+            <button id="addSensorBtn" class="btn">➕ Додати сенсор</button>
+          </h2>
+          <!-- Місце для підпису батчу -->
+          <h3 id="batchLabel" style="text-align:center; margin-bottom:0.5rem;">Об’єкт #—</h3>
+          <div class="sensor-grid" id="sensorGrid"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="log" class="section">
+      <div class="disabled-msg"></div>
+      <div class="section-content">
+        <div class="card">
+          <h2>Журнал Сортувань</h2>
+          <button class="btn" id="simulateLogsBtn">Надати 10 записів</button>
+          <table id="logTable">
+            <tr><th>ID</th><th>Час</th><th>Результат</th><th>Тривалість</th><th>Коректність</th></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="analytics" class="section">
+      <div class="disabled-msg"></div>
+      <div class="section-content analytics-grid">
+        <div class="card"><h2>Точність сортування</h2><div class="chart-container"><canvas id="accuracyChart"></canvas></div></div>
+        <div class="card"><h2>Продуктивність</h2><div class="chart-container"><canvas id="performanceChart"></canvas></div></div>
+        <div class="card"><h2>Кількість помилок</h2><div class="chart-container"><canvas id="errorChart"></canvas></div></div>
+        <div class="card"><h2>Час циклу (секунд)</h2><div class="chart-container"><canvas id="cycleChart"></canvas></div></div>
+        <div class="card"><h2>Температура</h2><div class="chart-container"><canvas id="tempChart"></canvas></div></div>
+        <div class="card"><h2>Зусилля захвату</h2><div class="chart-container"><canvas id="forceChart"></canvas></div></div>
+        <div class="card"><h2>Вологість</h2><div class="chart-container"><canvas id="humidityChart"></canvas></div></div>
+        <div class="card"><h2>Гістограма ваги</h2><div class="chart-container"><canvas id="weightChart"></canvas></div></div>
+        <div class="card"><h2>X/Y позиції захвату</h2><div class="chart-container"><canvas id="xyChart"></canvas></div></div>
+        <div class="card"><h2>Кореляція: Вага vs Зусилля</h2><div class="chart-container"><canvas id="correlationChart"></canvas></div></div>
+      </div>
+    </section>
+
+    <section id="settings" class="section">
+      <div class="disabled-msg"></div>
+      <div class="section-content">
+        <div class="card">
+          <h2>Налаштування</h2>
+
+          <div class="settings-button-group">
+            <button class="btn btn-enable" id="enableSystemBtn" style="background-color: var(--primary);">Увімкнути систему</button>
+            <button class="btn btn-disable" id="disableSystemBtn" style="background-color: var(--danger);">Вимкнути систему</button>
+          </div>
+
+          <div id="settingsControls">
+            <label for="conveyorSpeed">Швидкість конвеєра:</label>
+            <input id="conveyorSpeed" type="range" min="0.5" max="5" step="0.5" value="1" /> м/с
+
+            <!-- ===== Новий повзунок для інтервалу сенсорів ===== -->
+            <div style="margin-top:1rem; text-align:center;">
+              <label for="sensorInterval">Інтервал оновлення сенсорів (с): 
+                <span id="sensorIntervalLabel">5</span>
+              </label>
+              <input id="sensorInterval"
+                    type="range"
+                    min="3" max="10" step="1" value="7"
+                    style="width:100%;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="systemStatus">
+    <div class="status-item"><span id="statusText"></span></div>
+    <div class="status-item">🌡 Темп: <span id="tempStatus">--</span></div>
+    <div class="status-item">🔔 Сповіщення: <span id="alertStatus">--</span></div>
+  </footer>
+
+  <!-- Контейнер для toast-повідомлень -->
+  <div id="notification-container" class="notification-container"></div>
+
+  <script src="js/auth-check.js"></script>
+  <script type="module" src="js/api.js"></script>
+  
+
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location = 'login.html';
+    });
+  </script>
+  
+  <script type="module" src="js/script.js"></script>
+
+</body>
+</html>

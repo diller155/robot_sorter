@@ -1,0 +1,346 @@
+/* Variables */
+:root {
+  --primary: #1abc9c;
+  --primary-hover: #16a085;
+  --danger: #e74c3c;
+  --danger-hover: #c0392b;
+  --warning: #e67e22;
+  --bg: #f4f4f4;
+  --header-bg: #2c3e50;
+  --nav-bg: #34495e;
+  --table-header-bg: #ecf0f1;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  color: #333;
+}
+
+/* Layout */
+header {
+  background-color: var(--header-bg);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  background-color: var(--nav-bg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: var(--primary);
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Section Headings */
+.card h2 {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Disabled Message */
+.disabled-msg {
+  display: none;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--danger);
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+/* Base Sensor Grid */
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  justify-items: center;
+}
+
+.sensor-card {
+  display: flex;
+  align-items: center;
+  border-left: 5px solid var(--primary);
+  background-color: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.sensor-card.warning {
+  border-color: var(--warning);
+}
+
+.sensor-card.danger {
+  border-color: var(--danger);
+}
+
+.sensor-title {
+  font-weight: bold;
+}
+
+.sensor-value {
+  margin-left: auto;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s, transform 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+/* Special Buttons */
+.btn-enable,
+.btn-disable {
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+  min-width: 180px;
+  border-radius: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-enable {
+  background-color: var(--primary);
+}
+
+.btn-disable {
+  background-color: var(--danger);
+}
+
+.btn-enable:hover:not(:disabled),
+.btn-disable:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-enable:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-disable:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+
+/* Section-specific Overrides */
+/* Sorting Tab */
+#smart .sensor-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+#smart .sensor-card {
+  padding: 1.5rem;
+  min-width: 250px;
+}
+
+#smartSortBtn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1.25rem 3rem;
+  font-size: 1.5rem;
+}
+
+/* Sensors Tab */
+#sensors .sensor-grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+#sensors .sensor-card {
+  padding: 1.5rem;
+  min-width: 360px;
+  font-size: 1.125rem;
+}
+
+/* Log Tab */
+#simulateLogsBtn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1.25rem 3rem;
+  font-size: 1.25rem;
+}
+
+/* Settings Controls */
+.settings-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+#settingsControls {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+#settingsControls label {
+  margin-right: 0.5rem;
+}
+
+/* Tables */
+ table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--table-header-bg);
+}
+
+/* Log Area */
+#logArea {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.log-entry {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid #ccc;
+}
+
+.log-entry.success {
+  border-color: green;
+}
+
+.log-entry.warning {
+  border-color: var(--warning);
+}
+
+.log-entry.danger {
+  border-color: var(--danger);
+}
+
+/* Charts */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+/* Footer Status */
+footer#systemStatus {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--header-bg);
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+footer#systemStatus .status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Контейнер для повідомлень */
+.notification-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  z-index: 2000;
+}
+
+/* Сам toast */
+.notification {
+  background-color: var(--danger);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Клас для видимого стану */
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}

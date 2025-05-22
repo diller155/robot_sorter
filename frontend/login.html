@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вхід</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth-page">
+    <form id="loginForm" class="auth-form">
+      <h2>Увійти</h2>
+      <input name="username" placeholder="Логін" required>
+      <input name="password" type="password" placeholder="Пароль" required>
+      <button type="submit">Увійти</button>
+      <p>Немає акаунту? <a href="register.html">Зареєструватися</a></p>
+    </form>
+  </div>
+
+  
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          username: form.get('username'),
+          password: form.get('password')
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        return alert(err.error || 'Помилка входу');
+      }
+      const { token, role } = await res.json();
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+      window.location = 'index.html';
+    });
+  </script>
+</body>
+</html>

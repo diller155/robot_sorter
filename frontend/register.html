@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Реєстрація</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth-page">
+    <form id="registerForm" class="auth-form">
+      <h2>Реєстрація</h2>
+      <input name="username" placeholder="Логін" required>
+      <input name="password" type="password" placeholder="Пароль" required>
+
+      <label for="role">Роль:</label>
+      <select name="role" id="role" required>
+        <option value="operator">Оператор</option>
+        <option value="admin">Адміністратор</option>
+      </select>
+
+      <button type="submit">Зареєструватися</button>
+      <p>Після реєстрації, якщо ви обрали «admin», переконайтеся, що це бажано.</p>
+    </form>
+  </div>
+  
+
+
+  <script src="js/register.js"></script>
+</body>
+</html>
