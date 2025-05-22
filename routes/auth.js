@@ -33,39 +33,7 @@ db.defaults({
   system_logs: []
 }).write();
 
-// кожні 5 секунд штовхаємо в DB 10 нових замірів
-let batchCounter     = 0;
-let sensorPushTimer  = null;
 
-// Функція, яка робить один «батч» записів
-function pushSensorBatch() {
-  batchCounter++;
-  sensorsDef.forEach(sensor => {
-    db.get('sensor_data')
-      .push({
-        id:         nanoid(),
-        batchId:    batchCounter,
-        timestamp:  new Date().toISOString(),
-        sensor_type: sensor.name,
-        icon:        sensor.icon,
-        value:       sensor.value(),
-        unit:        sensor.unit,
-        warn:        sensor.warn
-      })
-      .write();
-  });
-}
-
-// Запуск таймера з інтервалом із налаштування
-function startSensorPush(intervalSec) {
-  if (sensorPushTimer) clearInterval(sensorPushTimer);
-  sensorPushTimer = setInterval(pushSensorBatch, intervalSec * 1000);
-}
-
-// При старті сервера — читаємо налаштування й запускаємо запис
-const initInterval = parseInt(
-  (db.get('settings').find({ parameter_name:'sensorInterval' }).value() || {}).value) || 10;
-startSensorPush(initInterval);
 
 
 
@@ -105,23 +73,14 @@ router.get('/auth/validate', (req, res) => {
   }
 });
 
-/** ========== DYNAMIC sensor_data ========== **/
-// Повертаємо 10 динамічних сенсорів, значення оновлюються при кожному запиті
-let lastSensorPush = 0;
-const SENSOR_PUSH_INTERVAL = 10000; // інтервал у мс
 
-// Замість старого handler-а:
+
+
 router.get('/sensor_data', (req, res) => {
   const all = db.get('sensor_data').value();
-  if (all.length === 0) {
-    return res.json([]);
-  }
-  // знайти максимальний batchId
-  const maxBatch = Math.max(...all.map(r => r.batchId));
-  // відфільтрувати записи з цим batchId
-  const lastBatch = all.filter(r => r.batchId === maxBatch);
-  res.json(lastBatch);
+  res.json(all);
 });
+
 
 
 /** ========== PERSISTENT CRUD sensor_data ========== **/

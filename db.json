@@ -14,7 +14,1431 @@
     }
   ],
   "sensor_data": [
-    
+    {
+      "id": "UI5k1ZMUUoGx9wYmRayxF",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.332Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "47.1",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "qnOVXkZBDuZX_hKV7Mcvr",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.333Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "552",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "FDxNKDXfGkjc6OxzMiC3e",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.335Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(195,7,50)",
+      "unit": ""
+    },
+    {
+      "id": "xwxAx5azRb7y2RzEMsHoF",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.336Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "5jg05HVV3HAEXa_8J1A3H",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.336Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "13.36",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "XYGRv8LqxAzTNgqN9ei6R",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.337Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "A5ZLpfzCZnMaQAXlhlxW7",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.338Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:95.6 Y:70.2",
+      "unit": ""
+    },
+    {
+      "id": "wrs6EchwqQ1ES8L0xyp2_",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.339Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:495 Y:76 Z:37",
+      "unit": ""
+    },
+    {
+      "id": "KWSnzL_1Zwwu1psqnsM5J",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.340Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "41.4",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "IWZpxIu9VdMEOSYpCSIq-",
+      "batchId": 1,
+      "timestamp": "2025-05-22T16:39:02.341Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "5.67",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "1vKWvWsteo91L1YBowek6",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.332Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "53.4",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "39a1bAcKyiIR0CvBePmXg",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.334Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "404",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "IUDcTw78xuBVDIyGB0YYq",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.335Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(221,77,24)",
+      "unit": ""
+    },
+    {
+      "id": "fkpoHAfwbbpinpzA8XI7v",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.337Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Неправильна",
+      "unit": ""
+    },
+    {
+      "id": "VtRyZtiRaIdEZbLasOUfN",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.337Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "8.67",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "aoR6GxKRPZS8wUTpJjP4R",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.338Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "oGzDDsF4eT-lOns_DgCym",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.338Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:1.6 Y:75.6",
+      "unit": ""
+    },
+    {
+      "id": "ZoLCVj1gOJsd8ZAzkfGm4",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.339Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:236 Y:401 Z:108",
+      "unit": ""
+    },
+    {
+      "id": "SbjL2PHHvdkJU7fZ-YCFu",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.339Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "75.7",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "D26Vj5npybD0Jnr54mabd",
+      "batchId": 2,
+      "timestamp": "2025-05-22T16:39:08.340Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "1.97",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "tjqTdX0Eub2ve4LoKYN_d",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.343Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "52.1",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "rpXtrZfd82LBLOCBzjfZW",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.345Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "314",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "_c1OpDAlCHgGoykHRaJEj",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.347Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(64,79,161)",
+      "unit": ""
+    },
+    {
+      "id": "mJSt859SWi8rwYDa_vmcO",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.348Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Неправильна",
+      "unit": ""
+    },
+    {
+      "id": "IAVMM6KJMB7WToSTbbFBf",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.349Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "10.27",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "ylsjXmDasAAi_cLoNiMZD",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.350Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "4ax51BXzDIJ7HGVkHsI_-",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.351Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:19.2 Y:65.9",
+      "unit": ""
+    },
+    {
+      "id": "7Qrt-gzLEuYhaGJQGybpH",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.352Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:447 Y:185 Z:484",
+      "unit": ""
+    },
+    {
+      "id": "8CBLUEKoe7G72n_GIgxoi",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.353Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "84.7",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "fueJF3wLVdyEqPkbhsc5L",
+      "batchId": 3,
+      "timestamp": "2025-05-22T16:39:14.354Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "1.45",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "FnIwMViFADantP2biscvX",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.346Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "43.7",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "CysL37cPevfMlI1TM-ZJc",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.350Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "289",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "rilrkuB_YnIapiiyhjr9K",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.351Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(54,56,40)",
+      "unit": ""
+    },
+    {
+      "id": "ICaR-5kH9aWqXmnZKTFe-",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.352Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "gw1gRia1RabT99_woXLvF",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.352Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "5.51",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "LHdtbSNT6KruJdy0Ca6vb",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.353Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "-5cv8M8ZX9ik5GMcltDC8",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.353Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:45.2 Y:0.7",
+      "unit": ""
+    },
+    {
+      "id": "R_q1rGN841NlCoIXbHVzJ",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.354Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:173 Y:465 Z:111",
+      "unit": ""
+    },
+    {
+      "id": "Nm7qLfuubL8YzLbAJJ0V9",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.355Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "78.1",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "JQ7FIrKnoLCpWDPMTmVsK",
+      "batchId": 4,
+      "timestamp": "2025-05-22T16:39:20.356Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "2.76",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "ewk9udhtLwt_acGNMMEsa",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.350Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "49.2",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "hzEZVoUb2PECf7XEFla9I",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.353Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "176",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "qR9N5mtzHvUIW49VqGw7w",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.354Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(225,181,233)",
+      "unit": ""
+    },
+    {
+      "id": "NbQJBOHxViXY4SbyKXf0K",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.355Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "ENa8LkwFWoPsr6CzE5w7H",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.355Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "6.34",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "Yunz_L84-Upy1KHYIqAFi",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.356Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "pL_wBvxbosMqw_XV7Nw4k",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.357Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:8.8 Y:32.3",
+      "unit": ""
+    },
+    {
+      "id": "LCgNxJZFaIVDF61sEjzjQ",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.357Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:443 Y:472 Z:125",
+      "unit": ""
+    },
+    {
+      "id": "Oq0PWSgXi5vc33omQ8D1I",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.358Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "98.4",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "MFrRVeLoEt5TMX27ngNci",
+      "batchId": 5,
+      "timestamp": "2025-05-22T16:39:26.358Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "4.76",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "aplncb0ZfLVsVvYydkjHI",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.359Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "37.9",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "2RDsVmpL23ymg3nsthodC",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.361Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "304",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "rnLPXXgHnwJFHZR89lkJW",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.363Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(51,221,247)",
+      "unit": ""
+    },
+    {
+      "id": "_naIs_GDl-y_iNFC_QQ_3",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.364Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "qJworJQZ-4ijjUkTai-Cp",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.365Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "13.46",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "I2WguY8c8nPrtxLsC5oLz",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.366Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "BuXdCR4K7-U3J39GJUMfP",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.367Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:29.1 Y:30.1",
+      "unit": ""
+    },
+    {
+      "id": "_nusFM7GBZwyFk1sJT26k",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.367Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:237 Y:32 Z:230",
+      "unit": ""
+    },
+    {
+      "id": "9H0NI0Dlsd6fLetxGWm1a",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.368Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "95.7",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "UNUZ07S3Y7PkH8_mHB-GD",
+      "batchId": 6,
+      "timestamp": "2025-05-22T16:39:32.369Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "4.97",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "_OPV1qH-7hU0wCgHohqnG",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.367Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "38.0",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "3mzoettMG3F89DNahE-qS",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.369Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "186",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "1kNEjTq25znLen6_BuS0c",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.370Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(138,63,44)",
+      "unit": ""
+    },
+    {
+      "id": "23KawXcpcovlN1CpWiwoA",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.371Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Неправильна",
+      "unit": ""
+    },
+    {
+      "id": "cI3hWmm211n2TbjZnNU3o",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.372Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "13.07",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "cHAPEoTN6O1PQNT0qK9Pk",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.372Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "8Rg8o7CgpKdYXXidIece3",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.373Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:89.3 Y:38.9",
+      "unit": ""
+    },
+    {
+      "id": "2TicQT6TY-bmjoTRBbzzJ",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.374Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:356 Y:253 Z:486",
+      "unit": ""
+    },
+    {
+      "id": "B61wTELWKtuuWnoJd83gp",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.374Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "81.4",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "rlLmNlM3rcNYLLgBexly7",
+      "batchId": 7,
+      "timestamp": "2025-05-22T16:39:38.375Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "2.94",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "bSE8AQ14MViHM1znhI0dG",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.375Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "57.1",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "TyWm89jq2s0K0Hd76sV-e",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.377Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "371",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "x6CzIOZXN20vmJ8YiU9eU",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.378Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(217,77,158)",
+      "unit": ""
+    },
+    {
+      "id": "e_Wtcetvg_JEYZJ1ZQ56_",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.379Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "omzXqQqC13OvJ9dlLoVbt",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.380Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "8.00",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "YJBlXfVd5jypN9mLGsJO8",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.381Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "LXVsYHocVH2XPnnMy5tZ8",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.382Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:63.6 Y:25.3",
+      "unit": ""
+    },
+    {
+      "id": "a7c21pYRSeynzmT4tJ30S",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.383Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:102 Y:410 Z:434",
+      "unit": ""
+    },
+    {
+      "id": "8E1RuRDL9jvfqFeNIQtPX",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.384Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "73.8",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "J6E-qb0EduWUHZ-uqeKjC",
+      "batchId": 8,
+      "timestamp": "2025-05-22T16:39:44.384Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "4.85",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "XGk6vZoq4Dww4ZRuX-mQc",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.377Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "51.7",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "9arcD7bNdZFu-6k9B8W4J",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.379Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "546",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "ZnB0T_FGuipAnFS7oe_z-",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.381Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(78,231,26)",
+      "unit": ""
+    },
+    {
+      "id": "HyGFtMoFJo6pc5K7tBJLW",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.382Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "iPM4-pVxok5Jhxbg42src",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.383Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "9.30",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "LPnCoZgBnMWLAlV921r2B",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.383Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "V-FYWjwg5Jdk2aTiwUGsZ",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.383Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:17.0 Y:26.7",
+      "unit": ""
+    },
+    {
+      "id": "opUGxozvQjc2fmfFa58pi",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.384Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:372 Y:176 Z:63",
+      "unit": ""
+    },
+    {
+      "id": "AsZtiadabCnQRg4KNcVK4",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.384Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "18.5",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "XubFl-wlLCEd6cwF38nIr",
+      "batchId": 9,
+      "timestamp": "2025-05-22T16:39:50.384Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "4.18",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "KoxhUgcoR5mdMLbiRBTAT",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.379Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "45.0",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "4lHkg2ssfc6Ulho5tacLm",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.380Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "217",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "S8S4XyupjH67ySorjFcTm",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.381Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(67,36,71)",
+      "unit": ""
+    },
+    {
+      "id": "TnWh-E-X-SWxEJDHqH3rF",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.382Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "_9sN_uShu9qEczIYJHquw",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.383Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "12.89",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "peP5aUELCd8xb5WOLsOfP",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.384Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "w0H-ghsWjakY9q0FhPF40",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.385Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:41.6 Y:13.8",
+      "unit": ""
+    },
+    {
+      "id": "kKBWPlOlXhKoqGAQ7voNs",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.386Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:296 Y:389 Z:185",
+      "unit": ""
+    },
+    {
+      "id": "vDA2p0bCS5S23klnsrrrB",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.386Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "31.4",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "kQ-6g950giQmGxEUNbtdL",
+      "batchId": 10,
+      "timestamp": "2025-05-22T16:39:56.387Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "1.81",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "zsHgJptnYg4ZNMD0V5b-a",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.390Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "44.7",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "exWDp1avKFNeiAMFLGh_5",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.394Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "363",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "ugNchppQjs-5n1uPiylTf",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.396Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(172,141,108)",
+      "unit": ""
+    },
+    {
+      "id": "gCGcJS6-O1uTIS3qTB5Mc",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.397Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Квадратна",
+      "unit": ""
+    },
+    {
+      "id": "4TovygN4K21r7f7Xn1uDf",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.398Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "6.95",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "6aZMUUS9ZiTxwXmiSO8lh",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.399Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "IxTMQrskLMEkxYbobGVkK",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.400Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:74.9 Y:1.3",
+      "unit": ""
+    },
+    {
+      "id": "zNNXkjhXx3lpgt7R1j77F",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.401Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:493 Y:81 Z:475",
+      "unit": ""
+    },
+    {
+      "id": "nwJXI3GB619VsozLQCzzJ",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.419Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "80.4",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "9CaNNz7GwJn80q2pjPJ1n",
+      "batchId": 11,
+      "timestamp": "2025-05-22T16:40:02.419Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "4.76",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "f23nYNlJyXGapx8g23YGZ",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.401Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "40.4",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "f7pHXa71q8dbKAqLW4Mqt",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.404Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "559",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "j8JfOxiWJr5MwjcCZrhAc",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.406Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(150,134,62)",
+      "unit": ""
+    },
+    {
+      "id": "2p_yTX4cr7BRaEZa12Uuq",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.407Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "Fp3jGKa_R-CsDpJJ6c3Xm",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.407Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "9.11",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "Pp58FFnDWlSZqAT71P9U1",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.408Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "9-RC5mVQP0Uhh_g5DTnjK",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.409Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:28.8 Y:62.0",
+      "unit": ""
+    },
+    {
+      "id": "gVLOBil8q58E4F3mU7DPQ",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.410Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:223 Y:493 Z:24",
+      "unit": ""
+    },
+    {
+      "id": "gA-G-2LNFSbAZ5TOp5CQL",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.410Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "5.5",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "EFp_XLa3_mmXuECJ6WIfo",
+      "batchId": 12,
+      "timestamp": "2025-05-22T16:40:08.411Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "5.15",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "BYGzpctBWv45bT8LHfe4j",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.409Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "38.7",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "SaR95buiIFOrmXfVyenwX",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.410Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "161",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "Zn6ABg3R79Mvup8hfeMF9",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.411Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(77,125,71)",
+      "unit": ""
+    },
+    {
+      "id": "vcZ06DKA_IMu4W-XY-Mv9",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.413Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Квадратна",
+      "unit": ""
+    },
+    {
+      "id": "bKk0wxwiW54AC4TBUzjcT",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.414Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "11.03",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "4BG4WSndabzqNJfNg4OKu",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.415Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "EsFPl7fmwKJX5CmjdRGU1",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.416Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:82.2 Y:21.9",
+      "unit": ""
+    },
+    {
+      "id": "X2z9_WTj7ZCqnPND6D-Gv",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.418Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:270 Y:465 Z:291",
+      "unit": ""
+    },
+    {
+      "id": "KDMNuAOPNnU21SJjQItzV",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.419Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "32.1",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "w4acKi6Fkxc42W9awbLrw",
+      "batchId": 13,
+      "timestamp": "2025-05-22T16:40:14.420Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "3.57",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "uvzLYdWnzx3WDeILOrjS0",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.410Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "43.5",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "j0IWtHdTD85ONxy4NAXcW",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.413Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "580",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "1DmZWS02e-dWmpoBiNf75",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.415Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(145,212,47)",
+      "unit": ""
+    },
+    {
+      "id": "T81nm3IDS57a35GJ7kg0N",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.416Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "m5NqlaguQDViz3ZWbIDOa",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.417Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "6.23",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "crczCZHLgalvGR2m8gMi9",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.418Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Ні",
+      "unit": ""
+    },
+    {
+      "id": "5dseMGT1EpifJpDnI66dj",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.419Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:11.6 Y:13.8",
+      "unit": ""
+    },
+    {
+      "id": "FEnmOKkJSDm9l0m9Tua7H",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.420Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:439 Y:395 Z:142",
+      "unit": ""
+    },
+    {
+      "id": "gQhVeybCrNlA2vUD5-x5Z",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.421Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "74.7",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "vm6cPU4b2owUiTgIjTmRX",
+      "batchId": 14,
+      "timestamp": "2025-05-22T16:40:20.421Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "2.51",
+      "unit": "с",
+      "warn": 6
+    },
+    {
+      "id": "SWA7gZeQfVgDMi3L-VOD6",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.422Z",
+      "sensor_type": "Температура",
+      "icon": "🌡️",
+      "value": "32.0",
+      "unit": "°C",
+      "warn": 60
+    },
+    {
+      "id": "sfvmb69VMNToypT_bjcNq",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.424Z",
+      "sensor_type": "Вага виробу",
+      "icon": "⚖️",
+      "value": "433",
+      "unit": "г",
+      "warn": 600
+    },
+    {
+      "id": "k_crxIvMyHX-BCuJZ5vF9",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.425Z",
+      "sensor_type": "Колір (RGB)",
+      "icon": "🎨",
+      "value": "rgb(79,166,60)",
+      "unit": ""
+    },
+    {
+      "id": "CAjlzA9hHwGcrCGhXojKJ",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.427Z",
+      "sensor_type": "Форма",
+      "icon": "🔷",
+      "value": "Кругла",
+      "unit": ""
+    },
+    {
+      "id": "CJIQtbX62NctU5rOHdvm9",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.428Z",
+      "sensor_type": "Зусилля захвату",
+      "icon": "🤖",
+      "value": "7.99",
+      "unit": "Н",
+      "warn": 12
+    },
+    {
+      "id": "cnMRx7KJS7sxPtSlD2Srd",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.429Z",
+      "sensor_type": "Металевість",
+      "icon": "🛡️",
+      "value": "Так",
+      "unit": ""
+    },
+    {
+      "id": "YexvM4o0X6EbB-sR1mgs6",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.430Z",
+      "sensor_type": "Центр маси",
+      "icon": "🎯",
+      "value": "X:97.6 Y:90.4",
+      "unit": ""
+    },
+    {
+      "id": "RQReIbHL_d2KmeTOyXVQ-",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.431Z",
+      "sensor_type": "Координати XYZ",
+      "icon": "📍",
+      "value": "X:17 Y:0 Z:355",
+      "unit": ""
+    },
+    {
+      "id": "qBfmKjf7ZNql5q0VQrC6w",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.432Z",
+      "sensor_type": "Вологість",
+      "icon": "💧",
+      "value": "96.0",
+      "unit": "%",
+      "warn": 80
+    },
+    {
+      "id": "udU1Q3itaqwek3TIaYsGg",
+      "batchId": 15,
+      "timestamp": "2025-05-22T16:40:26.449Z",
+      "sensor_type": "Час перебування",
+      "icon": "⏱️",
+      "value": "1.94",
+      "unit": "с",
+      "warn": 6
+    }
   ],
   "settings": [
     {
@@ -25,13 +1449,19 @@
     {
       "id": "xxxxx",
       "parameter_name": "sensorInterval",
-      "value": "3"
+      "value": "6"
     }
   ],
   "system_logs": [
     {
       "id": "TOvD3d4mHl8Dw8Ml6sJn5",
       "timestamp": "2025-05-22T14:17:59.255Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "J1spN15dzP6UIHOKBfn6x",
+      "timestamp": "2025-05-22T16:38:58.499Z",
       "message": "Система увімкнена",
       "level": "info"
     }

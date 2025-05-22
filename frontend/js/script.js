@@ -10,6 +10,12 @@ const disableBtn  = document.getElementById('disableSystemBtn');
 const conveyorInput       = document.getElementById('conveyorSpeed');
 const notificationContainer = document.getElementById('notification-container');
 
+
+let sensorBatches = [];    // масив масивів
+let batchIds       = [];   // список batchId, відсортований за зростанням
+let currentBatch   = 0;    // індекс у списку batchIds
+let sensorTimer    = null;
+
 // поточний інтервал (секунди)
 let sensorIntervalSec = 10;
 
@@ -76,44 +82,42 @@ function showSection(id) {
   Object.values(chartInstances).forEach(c => c.resize());
 }
 
-// 2) Оновлення сенсорів
-async function updateSensors() {
-  try {
-    const data = await apiFetch('/sensor_data');
-    const grid = document.getElementById('sensorGrid');
-    grid.innerHTML = '';
-
-    // Якщо немає даних — очистити підпис
-    const batchLabelEl = document.getElementById('batchLabel');
-    if (data.length === 0) {
-      batchLabelEl.textContent = 'Об’єкт #—';
-      return;
-    }
-
-    // Показати номер батчу
-    const batchId = data[0].batchId;
-    batchLabelEl.textContent = `Об’єкт #${batchId}`;
-
-    // Малюємо картки
-    data.forEach(s => {
-      const card = document.createElement('div');
-      const isDanger = s.warn !== undefined && parseFloat(s.value) > s.warn;
-      card.className = 'sensor-card ' + (isDanger ? 'danger' : '');
-      card.innerHTML = `
-        <div class="sensor-title">${s.icon} ${s.sensor_type}</div>
-        <div class="sensor-value">${s.value} ${s.unit}</div>
-        <div class="sensor-actions">
-          <button class="editBtn"   data-id="${s.id}">✏️ Редагувати</button>
-          <button class="deleteBtn" data-id="${s.id}">🗑️ Видалити</button>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  } catch {
-    showNotification('Не вдалося завантажити дані сенсорів', 2000);
-  }
+async function loadAllBatches() {
+  const all = await apiFetch('/sensor_data');
+  const groups = all.reduce((acc, r) => {
+    (acc[r.batchId] = acc[r.batchId] || []).push(r);
+    return acc;
+  }, {});
+  batchIds       = Object.keys(groups).sort((a,b)=>a-b);
+  sensorBatches = batchIds.map(id => groups[id]);
 }
 
+
+function showNextBatch() {
+  if (!sensorBatches.length) return;
+  const batch = sensorBatches[currentBatch];
+  const grid  = document.getElementById('sensorGrid');
+  grid.innerHTML = '';
+  batch.forEach(s => {
+    const danger = s.warn !== undefined && +s.value > s.warn ? ' danger' : '';
+    const card = document.createElement('div');
+    card.className = 'sensor-card' + danger;
+    card.innerHTML = `
+      <div class="sensor-title">${s.icon} ${s.sensor_type}</div>
+      <div class="sensor-value">${s.value} ${s.unit}</div>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById('batchLabel').textContent = `Об’єкт #${batchIds[currentBatch]}`;
+  currentBatch = (currentBatch + 1) % sensorBatches.length;
+}
+
+function setSensorInterval() {
+  clearInterval(sensorTimer);
+  const sec = parseInt(document.getElementById('sensorInterval').value, 10);
+  document.getElementById('sensorIntervalLabel').textContent = sec;
+  sensorTimer = setInterval(showNextBatch, sec * 1000);
+}
 
 
 
@@ -238,23 +242,6 @@ function updateFooterStatus() {
   disableBtn.disabled = !systemActive;
 }
 
-// Інтервали та чарти
-function setSensorInterval() {
-  clearInterval(sensorInterval);
-  clearInterval(chartInterval);
-
-  // використовуємо новий слайдер (секунди → мілісекунди)
-  const intervalMs = sensorIntervalSec * 1000;
-
-  sensorInterval = setInterval(() => {
-    updateSensors();
-    updateFooterStatus();
-  }, intervalMs);
-
-  chartInterval = setInterval(updateCharts, intervalMs);
-}
-
-
 
 // Ініціалізація графіків
 function initCharts() {
@@ -360,7 +347,7 @@ function enableSystem() {
   if (systemActive) return;
   systemActive = true;
   showSection(document.querySelector('.section.active').id);
-  updateSensors();
+  showNextBatch();
   setSensorInterval();
   updateFooterStatus();
   logSystem('Система увімкнена','info');
@@ -378,7 +365,11 @@ function disableSystem() {
 }
 
 // Старт скрипта
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', async()=>{
+
+  await loadAllBatches();  // 1) підвантажили всі дані
+  showNextBatch();         // 2) показали перший блок
+  setSensorInterval();     // 3) запустили інтервал за поточним значенням повзунка
   // ————— Слайдер для інтервалу оновлення сенсорів —————
   const sensorSlider = document.getElementById('sensorInterval');
   const sensorLabel  = document.getElementById('sensorIntervalLabel');
@@ -387,24 +378,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   sensorIntervalSec = parseInt(sensorSlider.value, 10);
   sensorLabel.textContent = sensorIntervalSec;
 
-  // коли крутять слайдер, оновити змінну і підпис
-  sensorSlider.addEventListener('input', async () => {
-    sensorIntervalSec = parseInt(sensorSlider.value, 10);
-    sensorLabel.textContent  = sensorIntervalSec;
-
-    // 1) переналаштовуємо власне опитування
-    if (systemActive) setSensorInterval();
-
-    // 2) відправляємо нове значення на сервер
-    const allSettings = await apiFetch('/settings');
-    const s = allSettings.find(x => x.parameter_name==='sensorInterval');
-    if (s) {
-      await apiFetch(`/settings/${s.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ value: sensorIntervalSec.toString() })
-      });
-    }
-  });
+  
   
   
   initCharts();
