@@ -9,14 +9,17 @@
   }).then(res=> {
     if (!res.ok) throw new Error();
     return res.json();
-  }).then(({ role })=>{
-    window.APP_ROLE = role;
-    localStorage.setItem('role', role);
-    if (role === 'operator') {
-      document.addEventListener('DOMContentLoaded', () => {
-        const settingsLink = document.querySelector('nav a[data-section="settings"]');
-        if (settingsLink) settingsLink.style.display = 'none';
-      });
+  }).then(({ role }) => {
+      window.APP_ROLE = role;
+      localStorage.setItem('role', role);
+
+      // якщо оператор — ховаємо посилання на Settings
+      if (role === 'operator') {
+        document.addEventListener('DOMContentLoaded', () => {
+          const settingsLink = document.querySelector('nav a[data-section="settings"]');
+          if (settingsLink) settingsLink && settingsLink.remove();
+;
+        });
     }
   }).catch(()=>{
     localStorage.removeItem('token');

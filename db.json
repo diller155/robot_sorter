@@ -1453,7 +1453,71 @@
       "timestamp": "2025-05-22T17:34:30.439Z",
       "message": "Система увімкнена",
       "level": "info"
+    },
+    {
+      "id": "9WZ6lBP8_rtqWqWveNeNy",
+      "timestamp": "2025-05-22T17:52:43.236Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "8aC999lBXi_ck9ywBC06O",
+      "timestamp": "2025-05-22T17:53:07.604Z",
+      "message": "Система вимкнена",
+      "level": "warning"
+    },
+    {
+      "id": "kHMzgD6oViVoNuivI_Aot",
+      "timestamp": "2025-05-22T17:53:16.076Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "jnz-DP_CIV2P_8_FOlvjZ",
+      "timestamp": "2025-05-22T17:53:17.625Z",
+      "message": "Система вимкнена",
+      "level": "warning"
+    },
+    {
+      "id": "9lZwAQB_KxQQKYSR3ExZs",
+      "timestamp": "2025-05-22T17:53:25.726Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "gWC8d-j3WIdKIf-F2k1gK",
+      "timestamp": "2025-05-22T18:01:20.734Z",
+      "message": "Система увімкнена",
+      "level": "info"
     }
   ],
-  "sort_events": []
+  "sort_events": [
+    {
+      "id": "qLCaiV138jXW9_7EKrJ2r",
+      "timestamp": "2025-05-22T17:53:01.009Z",
+      "weight": 540,
+      "force": 13.72,
+      "shape": "Кругла",
+      "result": "accepted",
+      "note": ""
+    },
+    {
+      "id": "jkD_aEWCPTb5CL7m1nhr5",
+      "timestamp": "2025-05-22T17:53:01.440Z",
+      "weight": 311,
+      "force": 13.83,
+      "shape": "Квадратна",
+      "result": "warning",
+      "note": "Форма: Квадратна"
+    },
+    {
+      "id": "4UtsgJ6X412NSjTyKKyoj",
+      "timestamp": "2025-05-22T17:53:01.784Z",
+      "weight": 340,
+      "force": 10.51,
+      "shape": "Неправильна",
+      "result": "warning",
+      "note": "Форма: Неправильна"
+    }
+  ]
 }

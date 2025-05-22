@@ -9,12 +9,15 @@ const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
 const conveyorInput       = document.getElementById('conveyorSpeed');
 const notificationContainer = document.getElementById('notification-container');
+const toggleBtn = document.getElementById('toggleConveyorBtn');
 
 
 let sensorBatches = [];    // масив масивів
 let batchIds       = [];   // список batchId, відсортований за зростанням
 let currentBatch   = 0;    // індекс у списку batchIds
 let sensorTimer    = null;
+let conveyorPaused = false;
+
 
 // поточний інтервал (секунди)
 let sensorIntervalSec = 10;
@@ -45,6 +48,10 @@ function showNotification(message, duration = 3000) {
 
 // Перемикання розділів
 function showSection(id) {
+  if (id === 'settings' && window.APP_ROLE !== 'admin') {
+    showNotification('У вас немає доступу до налаштувань', 2000);
+    return;
+  }
   // 1) Переключити клас active
   sections.forEach(s => s.classList.remove('active'));
   const target = document.getElementById(id);
@@ -118,6 +125,7 @@ function setSensorInterval() {
   document.getElementById('sensorIntervalLabel').textContent = sec;
   sensorTimer = setInterval(showNextBatch, sec * 1000);
 }
+
 
 
 
@@ -370,6 +378,21 @@ document.addEventListener('DOMContentLoaded', async()=>{
   await loadAllBatches();  // 1) підвантажили всі дані
   showNextBatch();         // 2) показали перший блок
   setSensorInterval();     // 3) запустили інтервал за поточним значенням повзунка
+
+  // ініціалізація кнопки паузи
+  const toggleBtn = document.getElementById('toggleConveyorBtn');
+  let conveyorPaused = false;
+  toggleBtn.addEventListener('click', () => {
+    conveyorPaused = !conveyorPaused;
+    if (conveyorPaused) {
+      clearInterval(sensorTimer);
+      toggleBtn.textContent = '▶️ Запустити конвеєр';
+    } else {
+      setSensorInterval();
+      toggleBtn.textContent = '⏸️ Пауза конвеєра';
+    }
+  });
+
   // ————— Слайдер для інтервалу оновлення сенсорів —————
   const sensorSlider = document.getElementById('sensorInterval');
   const sensorLabel  = document.getElementById('sensorIntervalLabel');
