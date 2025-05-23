@@ -97,13 +97,12 @@ async function loadAllBatches() {
   sensorBatches = batchIds.map(id => groups[id]);
 }
 
-
-function showNextBatch() {
+function renderBatch(index) {
   if (!sensorBatches.length) return;
-  const batch = sensorBatches[currentBatch];
+  const batch = sensorBatches[index];
   const grid  = document.getElementById('sensorGrid');
   grid.innerHTML = '';
-  
+
   batch.forEach(s => {
     const danger = s.warn !== undefined && +s.value > s.warn ? ' danger' : '';
     const card = document.createElement('div');
@@ -114,15 +113,24 @@ function showNextBatch() {
     `;
     grid.appendChild(card);
     if (window.APP_ROLE === 'admin' && conveyorPaused) {
-    const actions = document.createElement('div');
-    actions.className = 'sensor-actions';
-    actions.innerHTML = `<button class="editBtn" data-id="${s.id}">✏️ Редагувати</button>`;
-    card.appendChild(actions);
-}
+      const actions = document.createElement('div');
+      actions.className = 'sensor-actions';
+      actions.innerHTML = `<button class="editBtn" data-id="${s.id}">✏️ Редагувати</button>`;
+      card.appendChild(actions);
+    }
   });
-  document.getElementById('batchLabel').textContent = `Об’єкт #${batchIds[currentBatch]}`;
+
+  document.getElementById('batchLabel').textContent =
+    `Об’єкт #${batchIds[index]}`;
+}
+
+
+function showNextBatch() {
+  if (!sensorBatches.length) return;
+  renderBatch(currentBatch);
   currentBatch = (currentBatch + 1) % sensorBatches.length;
 }
+
 
 
 function setSensorInterval() {
@@ -414,24 +422,34 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
   // 8) Редагувати та видаляти — делегуємо по всьому body
   document.body.addEventListener('click', async e => {
+  // 1) Зразу ж дивимось, чи клікнули на кнопку «Редагувати»
   const editBtn = e.target.closest('.editBtn');
   if (!editBtn) return;
 
+  // 2) Беремо id і нове значення
   const id = editBtn.dataset.id;
   const newValue = prompt('Введіть нове значення сенсора:');
   if (newValue == null) return;
 
   try {
+    // 3) Відправляємо запит на сервер
     await apiFetch(`/sensor_data/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ value: newValue })
     });
     showNotification('Значення оновлено');
-    // оновимо поточну картку
-    showNextBatch();
+
+    // 4) Оновлюємо локальний масив і рендеримо ту ж саму пачку
+    const prevIndex = (currentBatch - 1 + sensorBatches.length) % sensorBatches.length;
+    sensorBatches[prevIndex] = sensorBatches[prevIndex].map(s =>
+      s.id === id ? { ...s, value: newValue } : s
+    );
+    renderBatch(prevIndex);
+
   } catch {
     showNotification('Не вдалося оновити значення', 2000);
   }
-});
+  });
+
 
 });
