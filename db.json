@@ -2269,6 +2269,150 @@
       "timestamp": "2025-05-23T19:46:48.018Z",
       "message": "Система увімкнена",
       "level": "info"
+    },
+    {
+      "id": "LkmtaRnMrDA6t4QY-L5-T",
+      "timestamp": "2025-05-23T20:10:46.768Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "8ITHioEfEAkXDme3dFKef",
+      "timestamp": "2025-05-23T20:20:25.297Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "PvDfpDEPiWR939ID9nrp3",
+      "timestamp": "2025-05-23T20:23:01.093Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "kjk956x-YRbWFcy4FgLSd",
+      "timestamp": "2025-05-23T20:23:10.496Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "j6lq50PSJ0wuf8ypgXe5e",
+      "timestamp": "2025-05-23T20:23:27.947Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "sD3ZSVVYnLO8PjpRFRtww",
+      "timestamp": "2025-05-23T20:25:05.793Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "U8tbef0YOpq2t2dDq4nnA",
+      "timestamp": "2025-05-23T20:25:24.320Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "WtUiHrRlyNiHTfVX3-01p",
+      "timestamp": "2025-05-23T20:26:01.132Z",
+      "message": "Система вимкнена",
+      "level": "warning"
+    },
+    {
+      "id": "oOwmHVFIAXgC9tEU73Wjm",
+      "timestamp": "2025-05-23T20:26:06.596Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "VkIgOsauQ27yo_4VOxQbm",
+      "timestamp": "2025-05-23T20:29:53.475Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "T4ibyRDrrNaej4VUPu05R",
+      "timestamp": "2025-05-23T20:30:14.258Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "K7trk9F1mkqAlttzkOpoz",
+      "timestamp": "2025-05-23T20:30:31.032Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "f2RDtr2jk7mctb1QDwcNI",
+      "timestamp": "2025-05-23T20:30:35.081Z",
+      "message": "Система вимкнена",
+      "level": "warning"
+    },
+    {
+      "id": "IM5lXhdQizWs6eJD4iB5Z",
+      "timestamp": "2025-05-23T20:30:36.565Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "Zfm_OFbbPrlUjdUV7BVyf",
+      "timestamp": "2025-05-23T20:32:46.105Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "ZS9fbLinucIMrPijbmTTz",
+      "timestamp": "2025-05-23T20:34:22.972Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "NnMA2H8DDObF6NFqd4oCz",
+      "timestamp": "2025-05-23T20:35:13.825Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "NtGjYR3xMoI2vDMno0B5N",
+      "timestamp": "2025-05-23T20:35:30.736Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "2RGu1n9dpyb_h3h6vE30C",
+      "timestamp": "2025-05-23T20:37:11.383Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "Oe_N3R42pvuUjlQX3klQr",
+      "timestamp": "2025-05-23T20:37:17.936Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "TjrrW78iZ_NXTxoAEFrxF",
+      "timestamp": "2025-05-23T20:37:24.055Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "4Ydy0M_Xi859y8dktaVf0",
+      "timestamp": "2025-05-23T20:37:51.751Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "t4UH7Jdh06yK8y79s1nEb",
+      "timestamp": "2025-05-23T20:40:25.254Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "hN_Av7KHvwQyE8j9ROKHb",
+      "timestamp": "2025-05-23T20:40:31.624Z",
+      "message": "Система увімкнена",
+      "level": "info"
     }
   ],
   "sort_events": [

@@ -20,9 +20,14 @@
     <a href="#" data-section="analytics">Аналітика</a>
     <a href="#" data-section="settings">Налаштування</a>
 
-    <button id="logoutBtn" style="margin-left:auto; background:transparent; border:none; color:#fff; cursor:pointer;">
-    Вийти
-    </button>
+    <div class="nav-user">
+      <span class="nav-user__icon">👤</span>
+      <div class="nav-user__text">
+        <span id="userName" class="nav-user__name">Ім’‍я</span>
+        <span id="userRole" class="nav-user__role">роль</span>
+      </div>
+      <button id="logoutBtn" class="btn-logout">Вийти</button>
+    </div>
   </nav>
   <main class="container">
 
@@ -166,11 +171,10 @@
                     style="width:100%;"/>
             </div>
 
-            <div style="margin-top:1rem; text-align:center;">
-              <button id="toggleConveyorBtn" class="btn">
-                ⏸️ Пауза конвеєра
-              </button>
-            </div>
+            <button id="toggleConveyorBtn" class="btn btn-toggle">
+              <span class="btn-toggle__icon">⏸️</span>
+              <span class="btn-toggle__label">Зупинити конвеєр!</span>
+            </button>
           </div>
         </div>
       </div>
@@ -188,7 +192,17 @@
 
   <script src="js/auth-check.js"></script>
   <script type="module" src="js/api.js"></script>
-  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nameEl = document.getElementById('userName');
+      const roleEl = document.getElementById('userRole');
+      const username = localStorage.getItem('username') || 'Гість';
+      const role     = localStorage.getItem('role')     || window.APP_ROLE || '';
+      nameEl.textContent = username;
+      roleEl.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+    });
+  </script>
 
   <script>
     document.getElementById('logoutBtn').addEventListener('click', () => {

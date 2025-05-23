@@ -544,3 +544,99 @@ footer#systemStatus .status-item {
   font-size: 1.2rem;  /* або 16px, 18px — залежно від дизайну */
   font-weight: 600;
 }
+
+
+/* ─── Блок користувача ───────────────────────────────────────── */
+.nav-user {
+  margin-left: auto;               /* зсуває в кінець <nav> */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Іконка (можна замінити на <img>) */
+.nav-user__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+/* Текстовий блок: ім’я над роллю */
+.nav-user__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+/* Ім’я користувача */
+.nav-user__name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ecf0f1;  /* світліший білий відтінок */
+}
+
+/* Роль користувача */
+.nav-user__role {
+  font-size: 0.80rem;
+  color: #bdc3c7;  /* сіріший для контрасту */
+  margin-top: 2px;
+}
+
+/* ─── Кнопка «Вийти» ────────────────────────────────────────── */
+.btn-logout {
+  background-color: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.45rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout:hover {
+  background-color: var(--danger-hover);
+}
+
+.btn-logout:active {
+  transform: scale(0.97);
+}
+
+/* ─── Оновлений стиль для кнопки Пауза/Запуск конвеєра ───────────────── */
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;               /* додатковий простір зверху */
+  background-color: var(--primary); /* зелений фон */
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-toggle__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.btn-toggle__label {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* при наведенні — оранжевий фон */
+.btn-toggle:hover {
+  background-color: var(--warning);
+}
+
+/* натискання */
+.btn-toggle:active {
+  transform: scale(0.97);
+}
+
+

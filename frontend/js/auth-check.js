@@ -13,12 +13,17 @@
     window.APP_ROLE = role;
     localStorage.setItem('role', role);
 
-    // якщо оператор — ховаємо посилання на Settings
+    document.addEventListener('DOMContentLoaded', () => {
+    // пробуємо взяти й ім'я, якщо воно збережене
+    const username = localStorage.getItem('username') || 'Гість';
+    document.getElementById('userName').textContent = username;
+    document.getElementById('userRole').textContent = role;
+    });
+
+    // якщо оператор — ховаємо секцію налаштувань
     if (role === 'operator') {
-      document.addEventListener('DOMContentLoaded', () => {
-        const settingsLink = document.querySelector('nav a[data-section="settings"]');
-        if (settingsLink) settingsLink.style.display = 'none';
-      });
+      const settingsLink = document.querySelector('nav a[data-section="settings"]');
+      if (settingsLink) settingsLink.style.display = 'none';
     }
   }).catch(()=>{
     localStorage.removeItem('token');

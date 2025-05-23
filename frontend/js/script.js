@@ -596,6 +596,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
   // ініціалізація кнопки паузи
   const toggleBtn = document.getElementById('toggleConveyorBtn');
+
   toggleBtn.addEventListener('click', () => {
   conveyorPaused = !conveyorPaused;
   if (conveyorPaused) {
@@ -605,7 +606,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
   } else {
     showNextBatch();               // потрібно і тут, щоб прибрати кнопки
     setSensorInterval();
-    toggleBtn.textContent = '⏸️ Пауза конвеєра';
+    toggleBtn.textContent = '⏸️ Зупинити конвеєр!';
   }
   });
 
