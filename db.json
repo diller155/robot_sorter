@@ -1459,6 +1459,24 @@
       "timestamp": "2025-05-23T12:36:56.811Z",
       "message": "Система увімкнена",
       "level": "info"
+    },
+    {
+      "id": "5_DXTbrgEH4S4GMHzwddB",
+      "timestamp": "2025-05-23T12:48:26.802Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "LloKdknSTURcbDIlO0Y3J",
+      "timestamp": "2025-05-23T12:49:15.184Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "YntXhpc6ZB6D3yLnezD4v",
+      "timestamp": "2025-05-23T12:53:07.784Z",
+      "message": "Система увімкнена",
+      "level": "info"
     }
   ],
   "sort_events": [

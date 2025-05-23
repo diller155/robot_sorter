@@ -34,16 +34,11 @@ const warningColor = cssVars.getPropertyValue('--warning').trim();
 
 // 1. Конфігурація графіків
 const chartConfigs = [
-  { id: 'accuracyChart',   sensorType: 'Точність сортування', type: 'line',    label: 'Точність сортування' },
-  { id: 'performanceChart', sensorType: 'Продуктивність',     type: 'line',    label: 'Продуктивність'   },
-  { id: 'errorChart',       sensorType: 'Кількість помилок',    type: 'line',    label: 'Кількість помилок' },
-  { id: 'cycleChart',       sensorType: 'Час циклу (секунд)',   type: 'line',    label: 'Час циклу (сек)'   },
-  { id: 'tempChart',        sensorType: 'Температура',         type: 'line',    label: 'Температура'      },
-  { id: 'forceChart',       sensorType: 'Зусилля захвату',     type: 'line',    label: 'Зусилля захвату'  },
-  { id: 'humidityChart',    sensorType: 'Вологість',            type: 'line',    label: 'Вологість'        },
-  { id: 'weightChart',      sensorType: 'Вага виробу',         type: 'bar',     label: 'Гістограма ваги'  },
-  { id: 'xyChart',          sensorType: 'XY позиції',          type: 'scatter', label: 'X/Y позиції захвату' },
-  { id: 'correlationChart', sensorType: 'Кореляція',           type: 'scatter', label: 'Вага vs Зусилля'  },
+  { id: 'tempChart',      sensorType: 'Температура',     type: 'line',    label: 'Температура'      },
+  { id: 'weightChart',    sensorType: 'Вага виробу',     type: 'line',    label: 'Вага виробу'      },
+  { id: 'forceChart',     sensorType: 'Зусилля захвату', type: 'line',    label: 'Зусилля захвату'  },
+  { id: 'humidityChart',  sensorType: 'Вологість',        type: 'line',    label: 'Вологість'        },
+  { id: 'cycleChart',     sensorType: 'Час перебування',  type: 'line',    label: 'Час перебування'  }
 ];
 
 // 2. Глобальні дані та ініціалізація полів
