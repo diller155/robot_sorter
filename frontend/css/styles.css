@@ -324,8 +324,8 @@ th {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
-  /* 16:9 ratio */
-  padding-top: 56.25%;
+  height: 250px;
+  padding-top: 0; 
 }
 
 /* Canvas заповнює контейнер */
@@ -348,7 +348,8 @@ th {
   background: var(--bg);
   border: 1px solid var(--primary);
   color: var(--primary);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
   margin: 0 0.5rem;
   border-radius: 4px;
   cursor: pointer;
@@ -419,4 +420,34 @@ footer#systemStatus .status-item {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+/* Стилізуємо кнопку Редагувати всередині sensor-card */
+.sensor-card .editBtn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Невеликий ефект при натисканні */
+.sensor-card .editBtn:active {
+  transform: scale(0.95);
+}
+
+/* Hover-стан */
+.sensor-card .editBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Розташування кнопки праворуч і вирівнювання */
+.sensor-card .sensor-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
