@@ -99,39 +99,68 @@ nav a:hover {
 /* Base Sensor Grid */
 .sensor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  justify-items: stretch;
 }
+
 
 .sensor-card {
+  min-width: 320px;
+  max-width: 100%;
+  min-height: 80px;
   display: flex;
   align-items: center;
-  border-left: 5px solid var(--primary);
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-left: 6px solid var(--primary);
+  border-radius: 10px;
   background-color: #fff;
-  padding: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  width: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
 }
 
-.sensor-card.warning {
-  border-color: var(--warning);
-}
-
-.sensor-card.danger {
-  border-color: var(--danger);
-}
 
 .sensor-title {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1.2rem;
+  flex: 1;
+  text-align: center;
 }
 
 .sensor-value {
-  margin-left: auto;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  color: #444;
+  flex: 1;
+  text-align: center;
 }
+
+.editBtn {
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;  /* більше внутрішнього простору */
+  white-space: nowrap;    /* заборонити перенесення */
+  overflow: visible;      /* дозволити текст виходити за межі */
+  text-overflow: unset;   /* не обрізати текст */
+  max-width: none;        /* не обмежувати ширину */
+  background-color: var(--primary); 
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+
+.editBtn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.editBtn:active {
+  transform: scale(0.97);
+}
+
 
 /* Buttons */
 .btn {
@@ -422,32 +451,76 @@ footer#systemStatus .status-item {
   pointer-events: auto;
 }
 
-/* Стилізуємо кнопку Редагувати всередині sensor-card */
-.sensor-card .editBtn {
-  background-color: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+
+
+.sort-note {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 4px;
 }
 
-/* Невеликий ефект при натисканні */
-.sensor-card .editBtn:active {
-  transform: scale(0.95);
-}
 
-/* Hover-стан */
-.sensor-card .editBtn:hover {
-  background-color: var(--primary-hover);
-}
+.sorting-card.accepted { border-left-color: green; }
+.sorting-card.rejected { border-left-color: red; }
+.sorting-card.warning  { border-left-color: orange; }
 
-/* Розташування кнопки праворуч і вирівнювання */
-.sensor-card .sensor-actions {
-  margin-left: auto;
+.sorting-card {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-left: 6px solid var(--primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  min-height: 200px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.3s;
+  font-size: 1.1rem;
 }
+
+.sorting-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.sorting-card .sensor-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.sorting-card .sensor-value {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.sorting-card .sort-note {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.sorting-card .sort-btn {
+  align-self: flex-end;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+
+
+/* 2. Контейнер для кнопок під сенсором */
+.sensor-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* 3. Великі кнопки для "Оновити предмети" і "Відсортувати усе" */
+#refreshItemsBtn,
+#sortAllBtn {
+  font-size: 1.2rem;
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1rem;
+}
+

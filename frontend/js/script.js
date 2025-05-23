@@ -1,12 +1,25 @@
 import { apiFetch } from './api.js';
 
+// ——— Ініціалізація даних у localStorage ———
+if (!localStorage.getItem('itemsToSort')) {
+  const sampleItems = [
+    { id: 1, name: 'Виріб A', weight: 300, force: 7 },
+    { id: 2, name: 'Виріб B', weight: 650, force: 13 },
+    { id: 3, name: 'Виріб C', weight: 400, force: 9 },
+    { id: 4, name: 'Виріб D', weight: 520, force: 11 }
+  ];
+  localStorage.setItem('itemsToSort', JSON.stringify(sampleItems));
+}
+if (!localStorage.getItem('sortEvents')) {
+  localStorage.setItem('sortEvents', '[]');
+}
+
 
 
 // DOM-елементи
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('nav a');
 const simulateBtn = document.getElementById('simulateLogsBtn');
-const smartBtn    = document.getElementById('smartSortBtn');
 const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
 const notificationContainer = document.getElementById('notification-container');
@@ -381,62 +394,124 @@ function setSensorInterval() {
 }
 
 
-// 3) Розумне сортування + POST в sort_events
-async function smartSort() {
-  if (!systemActive) {
-    showNotification('Система вимкнена! Увімкніть систему для сортування.', 2500);
-    return;
-  }
-  const weight = +(Math.random() * 400 + 200).toFixed(0);
-  const force  = +(Math.random() * 10 + 5).toFixed(2);
-  const shape  = ['Кругла','Квадратна','Неправильна'][Math.floor(Math.random()*3)];
-  let result = 'accepted', reason = '';
-  if (weight>600 && force>12) { result='rejected'; reason=`Вага й зусилля понад ліміт`; }
-  else if (shape!=='Кругла')    { result='warning';  reason=`Форма: ${shape}`; }
+// 1) Рендеримо картки сортування
+function performSort(itemId) {
+  const items = JSON.parse(localStorage.getItem('itemsToSort'));
+  const item  = items.find(i => i.id === itemId);
 
-  // Відобразити у UI
-  const entry = document.createElement('div');
-  entry.className = `log-entry ${result}`;
-  entry.innerHTML = `<strong>${
-    result==='accepted' ? '✔️ Прийнято' 
-      : result==='rejected' ? '❌ Відхилено' 
-      : '⚠️ Попередження'
-  }</strong> — ${reason||'OK'}`;
-  document.getElementById('logOutput').prepend(entry);
+  let result = 'accepted', note = 'Параметри в нормі';
 
-  // POST
-  try {
-    await apiFetch('/sort_events', {
-      method: 'POST',
-      body: JSON.stringify({ weight, force, shape, result, note: reason })
-    });
-  } catch {
-    showNotification('Не вдалося зберегти подію сортування', 2000);
+  if (item.weight < 200) {
+    result = 'warning';
+    note   = 'Замала вага для подальшої обробки';
+  } else if (item.weight > 600) {
+    result = 'rejected';
+    note   = 'Вага перевищує граничне значення';
+  } else if (item.force > 12) {
+    result = 'rejected';
+    note   = 'Зусилля перевищує безпечний поріг';
   }
+
+  item.sortResult = result;
+  item.sortNote   = note;
+
+  localStorage.setItem('itemsToSort', JSON.stringify(items));
+
+  const events = JSON.parse(localStorage.getItem('sortEvents'));
+  events.unshift({
+    id: Date.now(),
+    timestamp: new Date().toISOString(),
+    itemId,
+    result,
+    note
+  });
+  localStorage.setItem('sortEvents', JSON.stringify(events));
+
+  loadSortingItems();
+  renderSortLog();
 }
 
-// 4) Завантажити журнал sort_events
-async function loadSortLog() {
-  try {
-    const events = await apiFetch('/sort_events');
-    const table = document.getElementById('logTable');
-    table.querySelectorAll('tr:not(:first-child)').forEach(r => r.remove());
-    events.forEach(ev => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${ev.id}</td>
-        <td>${new Date(ev.timestamp).toLocaleString()}</td>
-        <td>${ev.result}</td>
-        <td>${ev.weight}</td>
-        <td>${ev.force}</td>
-        <td>${ev.shape}</td>
-      `;
-      table.appendChild(tr);
-    });
-  } catch {
-    showNotification('Не вдалося завантажити журнал сортувань', 2000);
-  }
+
+function loadSortingItems() {
+  const items = JSON.parse(localStorage.getItem('itemsToSort'));
+  const grid  = document.getElementById('smartSensorGrid');
+  grid.innerHTML = '';
+
+  // Кнопки керування
+  const refreshBtn = document.createElement('button');
+  refreshBtn.textContent = '🔄 Оновити предмети';
+  refreshBtn.className = 'btn';
+  refreshBtn.id = 'refreshItemsBtn';
+  refreshBtn.addEventListener('click', () => {
+    regenerateSortingItems();
+    loadSortingItems();
+  });
+
+  const sortAllBtn = document.createElement('button');
+  sortAllBtn.textContent = '✅ Відсортувати усе';
+  sortAllBtn.className = 'btn';
+  sortAllBtn.id = 'sortAllBtn';
+  sortAllBtn.addEventListener('click', () => {
+    items.filter(i => !i.sortResult).forEach(i => performSort(i.id));
+  });
+
+  grid.append(refreshBtn);
+  grid.append(sortAllBtn);
+
+  items.forEach(item => {
+    const result = item.sortResult || 'unsorted';
+    const css    = result === 'accepted' ? 'accepted'
+                  : result === 'rejected' ? 'rejected'
+                  : result === 'warning' ? 'warning' : '';
+
+    const card = document.createElement('div');
+    card.className = 'sorting-card ' + css;
+    card.innerHTML = `
+      <div class="sensor-title">📦 ${item.name}</div>
+      <div class="sensor-value">${item.weight} г, ${item.force} Н</div>
+      ${item.sortNote ? `<div class="sort-note">📋 ${item.sortNote}</div>` : ''}
+      ${!item.sortResult ? `<button class="btn sort-btn" data-id="${item.id}">Сортувати</button>` : ''}
+    `;
+    grid.append(card);
+  });
 }
+
+
+// Генерація нових випадкових предметів
+function regenerateSortingItems() {
+  const newItems = Array.from({ length: 6 }, (_, i) => ({
+    id: Date.now() + i,
+    name: `Об'єкт ${i + 1}`,
+    weight: Math.floor(Math.random() * 500) + 100,
+    force: +(Math.random() * 20).toFixed(1)
+  }));
+  localStorage.setItem('itemsToSort', JSON.stringify(newItems));
+}
+
+
+// 3) Рендеримо таблицю журналу
+function renderSortLog(filter = 'all') {
+  const table = document.getElementById('logTable');
+  table.querySelectorAll('tr:not(:first-child)').forEach(r => r.remove());
+  
+  const events = JSON.parse(localStorage.getItem('sortEvents')) || [];
+
+  const filtered = filter === 'all' ? events : events.filter(ev => ev.result === filter);
+
+  filtered.forEach(ev => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${ev.id}</td>
+      <td>${new Date(ev.timestamp).toLocaleString()}</td>
+      <td>${ev.itemId}</td>
+      <td>${ev.result}</td>
+      <td>${ev.note}</td>
+    `;
+    table.append(tr);
+  });
+}
+
+
 
 
 // 6) Логування системних подій
@@ -466,7 +541,6 @@ function updateFooterStatus() {
     alertEl.textContent = '';
     alertEl.style.color = 'inherit';
   }
-  smartBtn.disabled   = !systemActive;
   enableBtn.disabled  =  systemActive;
   disableBtn.disabled = !systemActive;
 }
@@ -486,7 +560,6 @@ function enableSystem() {
   logSystem('Система увімкнена','info');
 }
 
-
 function disableSystem() {
   if (!systemActive) return;
   systemActive = false;
@@ -495,6 +568,7 @@ function disableSystem() {
   updateFooterStatus();
   logSystem('Система вимкнена','warning');
 }
+
 
 // Старт скрипта
 document.addEventListener('DOMContentLoaded', async()=>{
@@ -572,8 +646,39 @@ document.addEventListener('DOMContentLoaded', async()=>{
     e.preventDefault();
     showSection(a.dataset.section);
   }));
-  simulateBtn.addEventListener('click', loadSortLog);
-  smartBtn   .addEventListener('click', smartSort);
+
+   // рендеримо сортування і журнал
+  loadSortingItems();
+  renderSortLog();
+
+  // делегуємо клік на кнопку “Сортувати”
+  document.getElementById('smartSensorGrid').addEventListener('click', e => {
+    const btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    performSort(Number(btn.dataset.id));
+  });
+
+  // кнопка “Надати 10 записів” очищає й генерує 10 нових
+  simulateBtn.addEventListener('click', () => {
+    localStorage.setItem('sortEvents', '[]');
+    const items = JSON.parse(localStorage.getItem('itemsToSort'));
+    for (let i = 0; i < 10; i++) {
+      const rndId = items[Math.floor(Math.random()*items.length)].id;
+      performSort(rndId);
+    }
+  });
+
+  document.getElementById('logFilter').addEventListener('change', e => {
+    renderSortLog(e.target.value);
+  });
+
+  document.getElementById('clearLogBtn').addEventListener('click', () => {
+    if (confirm('Очистити журнал подій?')) {
+      localStorage.setItem('sortEvents', '[]');
+      renderSortLog();
+    }
+  });
+
   enableBtn  .addEventListener('click', enableSystem);
   disableBtn .addEventListener('click', disableSystem);
   

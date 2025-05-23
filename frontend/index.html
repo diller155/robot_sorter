@@ -25,17 +25,14 @@
     </button>
   </nav>
   <main class="container">
+
     <section id="smart" class="section active">
       <div class="disabled-msg"></div>
       <div class="section-content">
         <div class="card">
-          <h2>🧠 Розумне сортування</h2>
+          <h2>📦 Розумне сортування</h2>
+
           <div class="sensor-grid" id="smartSensorGrid"></div>
-          <button class="btn" id="smartSortBtn">Розумне сортування</button>
-          <div id="logArea">
-            <h3>Лог рішень:</h3>
-            <div id="logOutput"></div>
-          </div>
         </div>
       </div>
     </section>
@@ -46,7 +43,6 @@
         <div class="card">
           <h2>
             Показники Сенсорів 
-            <button id="addSensorBtn" class="btn">➕ Додати сенсор</button>
           </h2>
           <!-- Місце для підпису батчу -->
           <h3 id="batchLabel" style="text-align:center; margin-bottom:0.5rem;">Об’єкт #—</h3>
@@ -61,13 +57,29 @@
       <div class="section-content">
         <div class="card">
           <h2>Журнал Сортувань</h2>
-          <button class="btn" id="simulateLogsBtn">Надати 10 записів</button>
+
+          <div id="logControls" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <button class="btn" id="simulateLogsBtn">🔁 Надати 10 записів</button>
+
+            <label>Фільтр:
+              <select id="logFilter" class="btn">
+                <option value="all">Усі</option>
+                <option value="accepted">Прийняті</option>
+                <option value="rejected">Відхилені</option>
+                <option value="warning">Попередження</option>
+              </select>
+            </label>
+
+            <button class="btn" id="clearLogBtn">🧹 Очистити журнал</button>
+          </div>
+
           <table id="logTable">
-            <tr><th>ID</th><th>Час</th><th>Результат</th><th>Тривалість</th><th>Коректність</th></tr>
+            <tr><th>ID</th><th>Час</th><th>Обʼєкт</th><th>Результат</th><th>Примітка</th></tr>
           </table>
         </div>
       </div>
     </section>
+
 
     <section id="analytics" class="section">
       <div class="disabled-msg"></div>
