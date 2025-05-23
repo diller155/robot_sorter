@@ -19,7 +19,6 @@ if (!localStorage.getItem('sortEvents')) {
 // DOM-елементи
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('nav a');
-const simulateBtn = document.getElementById('simulateLogsBtn');
 const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
 const notificationContainer = document.getElementById('notification-container');
@@ -30,6 +29,9 @@ let sensorBatches = [];    // масив масивів
 let batchIds       = [];   // список batchId, відсортований за зростанням
 let currentBatch   = 0;    // індекс у списку batchIds
 let sensorTimer    = null;
+
+
+
 
 
 // Стан системи
@@ -393,6 +395,19 @@ function setSensorInterval() {
   sensorTimer = setInterval(showNextBatch, sec * 1000);
 }
 
+function getNextEventId() {
+  const current = parseInt(localStorage.getItem('eventCounter') || '0', 10);
+  const next = current + 1;
+  localStorage.setItem('eventCounter', next.toString());
+  return next;
+}
+function getNextItemId() {
+  const current = parseInt(localStorage.getItem('itemCounter') || '0', 10);
+  const next = current + 1;
+  localStorage.setItem('itemCounter', next.toString());
+  return next;
+}
+
 
 // 1) Рендеримо картки сортування
 function performSort(itemId) {
@@ -419,7 +434,7 @@ function performSort(itemId) {
 
   const events = JSON.parse(localStorage.getItem('sortEvents'));
   events.unshift({
-    id: Date.now(),
+    id: getNextEventId(),
     timestamp: new Date().toISOString(),
     itemId,
     result,
@@ -479,8 +494,9 @@ function loadSortingItems() {
 
 // Генерація нових випадкових предметів
 function regenerateSortingItems() {
+  localStorage.setItem('itemCounter', '0');
   const newItems = Array.from({ length: 6 }, (_, i) => ({
-    id: Date.now() + i,
+    id: getNextItemId(),
     name: `Об'єкт ${i + 1}`,
     weight: Math.floor(Math.random() * 500) + 100,
     force: +(Math.random() * 20).toFixed(1)
@@ -658,15 +674,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
     performSort(Number(btn.dataset.id));
   });
 
-  // кнопка “Надати 10 записів” очищає й генерує 10 нових
-  simulateBtn.addEventListener('click', () => {
-    localStorage.setItem('sortEvents', '[]');
-    const items = JSON.parse(localStorage.getItem('itemsToSort'));
-    for (let i = 0; i < 10; i++) {
-      const rndId = items[Math.floor(Math.random()*items.length)].id;
-      performSort(rndId);
-    }
-  });
 
   document.getElementById('logFilter').addEventListener('change', e => {
     renderSortLog(e.target.value);
@@ -675,9 +682,17 @@ document.addEventListener('DOMContentLoaded', async()=>{
   document.getElementById('clearLogBtn').addEventListener('click', () => {
     if (confirm('Очистити журнал подій?')) {
       localStorage.setItem('sortEvents', '[]');
+      localStorage.setItem('eventCounter', '0');
+
+      // ОЧИЩЕННЯ предметів
+      localStorage.setItem('itemCounter', '0');
+      regenerateSortingItems();
+
       renderSortLog();
+      loadSortingItems(); // оновлює відображення
     }
   });
+
 
   enableBtn  .addEventListener('click', enableSystem);
   disableBtn .addEventListener('click', disableSystem);

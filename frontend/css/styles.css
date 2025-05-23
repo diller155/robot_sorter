@@ -524,3 +524,23 @@ footer#systemStatus .status-item {
   margin-bottom: 1rem;
 }
 
+.log-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  margin: 0.3rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.log-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+#logControls label {
+  font-size: 1.2rem;  /* або 16px, 18px — залежно від дизайну */
+  font-weight: 600;
+}
