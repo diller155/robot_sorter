@@ -1442,94 +1442,9 @@
   ],
   "settings": [],
   "system_logs": [
-    {
-      "id": "JtBdy4JvxZ9Elc-atbGh9",
-      "timestamp": "2025-05-22T18:39:46.006Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "MvJsleCRJv4-EIO-zHz8m",
-      "timestamp": "2025-05-22T18:49:01.929Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "jRNjANJdp_KpbrDK1dWOl",
-      "timestamp": "2025-05-22T18:59:31.562Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "PoBD_-oy8cPXNqceIjTW_",
-      "timestamp": "2025-05-22T18:59:51.970Z",
-      "message": "Система вимкнена",
-      "level": "warning"
-    },
-    {
-      "id": "mmnWpQ2_KfJEfKZ5tmHwL",
-      "timestamp": "2025-05-22T18:59:53.590Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "cS9akf4CGAGgxCz3i7N8a",
-      "timestamp": "2025-05-22T18:59:54.866Z",
-      "message": "Система вимкнена",
-      "level": "warning"
-    },
-    {
-      "id": "RYgaU6B2thQowbfHm2JYj",
-      "timestamp": "2025-05-22T18:59:55.327Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "jrP8xkzwIoibFIQqZ4M4Y",
-      "timestamp": "2025-05-22T19:02:29.081Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    },
-    {
-      "id": "zwpXvLhhUjp4DqpnKmPKa",
-      "timestamp": "2025-05-22T19:02:48.062Z",
-      "message": "Система вимкнена",
-      "level": "warning"
-    },
-    {
-      "id": "4zlsaf0m1pcCIx-6l3Kgg",
-      "timestamp": "2025-05-22T19:02:51.487Z",
-      "message": "Система увімкнена",
-      "level": "info"
-    }
+    
   ],
   "sort_events": [
-    {
-      "id": "qLCaiV138jXW9_7EKrJ2r",
-      "timestamp": "2025-05-22T17:53:01.009Z",
-      "weight": 540,
-      "force": 13.72,
-      "shape": "Кругла",
-      "result": "accepted",
-      "note": ""
-    },
-    {
-      "id": "jkD_aEWCPTb5CL7m1nhr5",
-      "timestamp": "2025-05-22T17:53:01.440Z",
-      "weight": 311,
-      "force": 13.83,
-      "shape": "Квадратна",
-      "result": "warning",
-      "note": "Форма: Квадратна"
-    },
-    {
-      "id": "4UtsgJ6X412NSjTyKKyoj",
-      "timestamp": "2025-05-22T17:53:01.784Z",
-      "weight": 340,
-      "force": 10.51,
-      "shape": "Неправильна",
-      "result": "warning",
-      "note": "Форма: Неправильна"
-    }
+    
   ]
 }

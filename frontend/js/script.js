@@ -9,18 +9,14 @@ const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
 const notificationContainer = document.getElementById('notification-container');
 
-
-
 let sensorBatches = [];    // масив масивів
 let batchIds       = [];   // список batchId, відсортований за зростанням
 let currentBatch   = 0;    // індекс у списку batchIds
 let sensorTimer    = null;
 
-
 // Стан системи
 let systemActive    = false;
 let sensorInterval  = null;
-let conveyorSettingId = null;
 const chartInstances = {};
 
 // Підтягнути CSS-змінну --warning
@@ -120,9 +116,6 @@ function setSensorInterval() {
   sensorTimer = setInterval(showNextBatch, sec * 1000);
 }
 
-
-
-
 // 3) Розумне сортування + POST в sort_events
 async function smartSort() {
   if (!systemActive) {
@@ -177,38 +170,6 @@ async function loadSortLog() {
     });
   } catch {
     showNotification('Не вдалося завантажити журнал сортувань', 2000);
-  }
-}
-
-// 5) Параметр conveyorSpeed
-async function loadSettings() {
-  try {
-    const list = await apiFetch('/settings');
-    let s = list.find(x => x.parameter_name==='conveyorSpeed');
-    if (s) {
-      conveyorInput.value = s.value;
-      conveyorSettingId = s.id;
-    } else {
-      const newS = await apiFetch('/settings', {
-        method: 'POST',
-        body: JSON.stringify({ parameter_name:'conveyorSpeed', value: conveyorInput.value })
-      });
-      conveyorSettingId = newS.id;
-    }
-  } catch {
-    showNotification('Не вдалося завантажити налаштування', 2000);
-  }
-}
-async function updateSettings(newValue) {
-  if (!conveyorSettingId) return;
-  try {
-    await apiFetch(`/settings/${conveyorSettingId}`, {
-      method: 'PUT',
-      body: JSON.stringify({ value: newValue })
-    });
-    showNotification('Швидкість збережено', 1500);
-  } catch {
-    showNotification('Не вдалося зберегти налаштування', 2000);
   }
 }
 
@@ -396,12 +357,8 @@ document.addEventListener('DOMContentLoaded', async()=>{
       setSensorInterval();
     });
   }
-
-  
-  
   
   initCharts();
-  loadSettings();
   showSection('smart');
   enableSystem();          // <<< важливо!
 
@@ -414,10 +371,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
   enableBtn  .addEventListener('click', enableSystem);
   disableBtn .addEventListener('click', disableSystem);
   
-  conveyorInput.addEventListener('input',()=>{
-    if(systemActive) setSensorInterval();
-    updateSettings(conveyorInput.value);
-  });
+
 
     // 7) Додати новий сенсор
   const addBtn = document.getElementById('addSensorBtn');
