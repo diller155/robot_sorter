@@ -31,6 +31,131 @@ let conveyorPaused = false;
 const cssVars     = getComputedStyle(document.documentElement);
 const warningColor = cssVars.getPropertyValue('--warning').trim();
 
+
+// 1. Конфігурація графіків
+const chartConfigs = [
+  { id: 'accuracyChart',   sensorType: 'Точність сортування', type: 'line',    label: 'Точність сортування' },
+  { id: 'performanceChart', sensorType: 'Продуктивність',     type: 'line',    label: 'Продуктивність'   },
+  { id: 'errorChart',       sensorType: 'Кількість помилок',    type: 'line',    label: 'Кількість помилок' },
+  { id: 'cycleChart',       sensorType: 'Час циклу (секунд)',   type: 'line',    label: 'Час циклу (сек)'   },
+  { id: 'tempChart',        sensorType: 'Температура',         type: 'line',    label: 'Температура'      },
+  { id: 'forceChart',       sensorType: 'Зусилля захвату',     type: 'line',    label: 'Зусилля захвату'  },
+  { id: 'humidityChart',    sensorType: 'Вологість',            type: 'line',    label: 'Вологість'        },
+  { id: 'weightChart',      sensorType: 'Вага виробу',         type: 'bar',     label: 'Гістограма ваги'  },
+  { id: 'xyChart',          sensorType: 'XY позиції',          type: 'scatter', label: 'X/Y позиції захвату' },
+  { id: 'correlationChart', sensorType: 'Кореляція',           type: 'scatter', label: 'Вага vs Зусилля'  },
+];
+
+// 2. Глобальні дані та ініціалізація полів
+let allData = [];
+chartConfigs.forEach(cfg => {
+  cfg.nextIndex   = 10;
+  cfg.chart       = null;
+  cfg.batchLabels = [];
+});
+
+// Форматування часу в HH:MM:SS
+function fmtTime(ts) {
+  const d = new Date(ts);
+  return `${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
+}
+
+// 3. Ініціалізація графіків
+async function initAnalyticsCharts() {
+  // Завантажуємо та групуємо дані
+  allData = await apiFetch('/sensor_data');
+  const byType = allData.reduce((acc, r) => {
+    (acc[r.sensor_type] = acc[r.sensor_type] || []).push(r);
+    return acc;
+  }, {});
+
+  // Для кожного графіка: перші 10 точок
+  chartConfigs.forEach(cfg => {
+    const series = (byType[cfg.sensorType] || [])
+      .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp))
+      .map(r => ({ v: +r.value, t: r.timestamp, batchId: r.batchId }));
+
+    const initial = series.slice(0, 10);
+    cfg.nextIndex = 10;
+    cfg.batchLabels = initial.map(pt => pt.batchId);
+
+    const labels = initial.map(pt => fmtTime(pt.t));
+    const data   = initial.map(pt => pt.v);
+
+    const ctx = document.getElementById(cfg.id).getContext('2d');
+    cfg.chart = new Chart(ctx, {
+      type: cfg.type,
+      data: {
+        labels: cfg.type === 'scatter' ? undefined : labels,
+        datasets: [{
+          label: cfg.label,
+          data: cfg.type === 'scatter'
+            ? initial.map(pt => ({ x: pt.v, y: pt.v, batchId: pt.batchId }))
+            : data,
+          fill: false,
+          tension: 0.1,
+          borderWidth: 2,
+          showLine: cfg.type !== 'scatter'
+        }]
+      },
+      plugins: [ ChartDataLabels ],
+      options: {
+        plugins: {
+          datalabels: {
+            align: 'top',
+            formatter: (val, ctx) => cfg.batchLabels[ctx.dataIndex],
+            font: { size: 10 }
+          },
+          legend: { display: false }
+        },
+        scales: {
+          x: cfg.type === 'scatter'
+            ? { type: 'linear', position: 'bottom', title: { display: true, text: 'X' } }
+            : { title: { display: true, text: 'Час' } },
+          y: { title: { display: true, text: cfg.label } }
+        }
+      }
+    });
+  });
+
+  // Інтервал для додавання по 5 точок кожні 10 с
+  setInterval(addNextToCharts, 10000);
+}
+
+
+// 4. Додавання нових даних
+function addNextToCharts() {
+  const byType = allData.reduce((acc, r) => {
+    (acc[r.sensor_type] = acc[r.sensor_type] || []).push(r);
+    return acc;
+  }, {});
+
+  chartConfigs.forEach(cfg => {
+    const series = (byType[cfg.sensorType] || [])
+      .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp))
+      .map(r => ({ v: +r.value, t: r.timestamp, batchId: r.batchId }));
+
+    const chunk = series.slice(cfg.nextIndex, cfg.nextIndex + 5);
+    if (!chunk.length) return;
+
+    // Оновлення batchLabels
+    cfg.batchLabels.push(...chunk.map(pt => pt.batchId));
+
+    // Додавання даних
+    chunk.forEach(pt => {
+      if (cfg.type === 'scatter') {
+        cfg.chart.data.datasets[0].data.push({ x: pt.v, y: pt.v, batchId: pt.batchId });
+      } else {
+        cfg.chart.data.labels.push(fmtTime(pt.t));
+        cfg.chart.data.datasets[0].data.push(pt.v);
+      }
+    });
+    cfg.chart.update();
+    cfg.nextIndex += chunk.length;
+  });
+}
+
+
 // Показ toast-повідомлення
 function showNotification(message, duration = 3000) {
   const note = document.createElement('div');
@@ -232,104 +357,8 @@ function updateFooterStatus() {
 }
 
 
-// Ініціалізація графіків
-function initCharts() {
-  const labels = Array.from({length:10},(_,i)=>'T'+(i+1));
 
-  chartInstances.accuracy = new Chart(
-    document.getElementById('accuracyChart'),
-    { type:'line',
-      data:{ labels, datasets:[{
-        label:'Точність (%)',
-        data: labels.map(()=>+(Math.random()*10+90).toFixed(2)),
-        fill:true, tension:0.4
-      }]},
-      options:{ responsive:true,
-        scales:{ x:{ title:{ display:true, text:'Час' } },
-                 y:{ title:{ display:true, text:'%' } } }
-      }
-    }
-  );
-  chartInstances.performance = new Chart(
-    document.getElementById('performanceChart'),
-    { type:'bar',
-      data:{ labels, datasets:[{
-        label:'Вироб./год',
-        data: labels.map(()=>Math.floor(Math.random()*50+100))
-      }]},
-      options:{ responsive:true }
-    }
-  );
-  chartInstances.error = new Chart(
-    document.getElementById('errorChart'),
-    { type:'line',
-      data:{ labels, datasets:[{
-        label:'Помилки',
-        data: labels.map(()=>Math.floor(Math.random()*5))
-      }]},
-      options:{ responsive:true }
-    }
-  );
-  // … аналогічно створити cycleChart, tempChart, forceChart, humidityChart …
-  chartInstances.weight = new Chart(
-    document.getElementById('weightChart'),
-    { type:'bar',
-      data:{ labels:['Клас1','Клас2','Клас3','Клас4','Клас5'],
-             datasets:[{ label:'Кількість', data: Array.from({length:5},()=>Math.floor(Math.random()*15+5)) }]
-      },
-      options:{ responsive:true }
-    }
-  );
-  chartInstances.xy = new Chart(
-    document.getElementById('xyChart'),
-    { type:'scatter',
-      data:{ datasets:[{ label:'X/Y позиції',
-        data: Array.from({length:15},()=>({ x:+(Math.random()*100).toFixed(2), y:+(Math.random()*100).toFixed(2) }))
-      }]},
-      options:{ responsive:true }
-    }
-  );
-  chartInstances.correlation = new Chart(
-    document.getElementById('correlationChart'),
-    { type:'scatter',
-      data:{ datasets:[{ label:'Вага vs Зусилля',
-        data: Array.from({length:15},()=>{
-          const w=+(Math.random()*500+100).toFixed(2);
-          return { x:w, y:+(Math.random()*5 + w/100).toFixed(2) };
-        })
-      }]},
-      options:{ responsive:true }
-    }
-  );
-}
 
-// Оновлення графіків під час інтервалів
-function updateCharts() {
-  const t = new Date().toLocaleTimeString();
-  ['accuracy','performance','error','cycle','temp','force','humidity'].forEach(key=>{
-    const ch = chartInstances[key];
-    if (!ch) return;
-    ch.data.labels.push(t);
-    let y;
-    switch(key){
-      case 'accuracy':    y=+(Math.random()*10+90).toFixed(2); break;
-      case 'performance': y=Math.floor(Math.random()*50+100);  break;
-      case 'error':       y=Math.floor(Math.random()*5);       break;
-      case 'cycle':       y=+(Math.random()*1+2).toFixed(2);   break;
-      case 'temp':        y=+(Math.random()*30+30).toFixed(2); break;
-      case 'force':       y=+(Math.random()*10+5).toFixed(2);  break;
-      case 'humidity':    y=+(Math.random()*80+20).toFixed(2); break;
-    }
-    ch.data.datasets[0].data.push(y);
-    if (ch.data.labels.length>20) {
-      ch.data.labels.shift();
-      ch.data.datasets[0].data.shift();
-    }
-    ch.update('none');
-  });
-
-  // перезапис hist, xy, corr аналогічно…
-}
 
 // Вмикання/вимикання системи
 function enableSystem() {
@@ -356,6 +385,7 @@ function disableSystem() {
 document.addEventListener('DOMContentLoaded', async()=>{
 
   await loadAllBatches();  // 1) підвантажили всі дані
+  
   showNextBatch();         // 2) показали перший блок
   setSensorInterval();     // 3) запустили інтервал за поточним значенням повзунка
 
@@ -385,7 +415,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     });
   }
   
-  initCharts();
+  initAnalyticsCharts();
   showSection('smart');
   enableSystem();          // <<< важливо!
 
