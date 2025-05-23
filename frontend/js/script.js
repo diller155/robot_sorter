@@ -37,9 +37,10 @@ const chartConfigs = [
   { id: 'tempChart',      sensorType: 'Температура',     type: 'line',    label: 'Температура'      },
   { id: 'weightChart',    sensorType: 'Вага виробу',     type: 'line',    label: 'Вага виробу'      },
   { id: 'forceChart',     sensorType: 'Зусилля захвату', type: 'line',    label: 'Зусилля захвату'  },
-  { id: 'humidityChart',  sensorType: 'Вологість',        type: 'line',    label: 'Вологість'        },
-  { id: 'cycleChart',     sensorType: 'Час перебування',  type: 'line',    label: 'Час перебування'  }
+  { id: 'humidityChart',  sensorType: 'Вологість',        type: 'line',    label: 'Вологість'        }
 ];
+
+
 
 // 2. Глобальні дані та ініціалізація полів
 let allData = [];
@@ -70,8 +71,8 @@ async function initAnalyticsCharts() {
       .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp))
       .map(r => ({ v: +r.value, t: r.timestamp, batchId: r.batchId }));
 
-    const initial = series.slice(0, 10);
-    cfg.nextIndex = 10;
+    const initial = series.slice(0, 8);
+    cfg.nextIndex = 8;
     cfg.batchLabels = initial.map(pt => pt.batchId);
 
     const labels = initial.map(pt => fmtTime(pt.t));
@@ -95,6 +96,8 @@ async function initAnalyticsCharts() {
       },
       plugins: [ ChartDataLabels ],
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           datalabels: {
             align: 'top',
@@ -113,8 +116,125 @@ async function initAnalyticsCharts() {
     });
   });
 
-  // Інтервал для додавання по 5 точок кожні 10 с
-  setInterval(addNextToCharts, 10000);
+  setInterval(addNextToCharts, 2500);
+}
+
+function initCharts() {
+  const total = 30;
+  const initialCount = 8;
+  const now = Date.now();
+
+  // ——— 1) Підготовка серій ———
+  const accuracySeries = Array.from({ length: total }, (_, i) => ({
+    t: now + i*1000,
+    v: +(Math.random()*10 + 90).toFixed(2)
+  }));
+  const errorSeries = Array.from({ length: total }, (_, i) => ({
+    t: now + i*1000,
+    v: Math.floor(Math.random()*5)
+  }));
+  const corrSeries = Array.from({ length: total }, (_, i) => {
+    const w = +(Math.random()*500 + 100).toFixed(2);
+    return { t: now + i*1000, x: w, y: +(Math.random()*5 + w/100).toFixed(2) };
+  });
+  // для гістограми ведемо просто лічильники по 5 класах
+  let histCounts = Array.from({ length: 5 }, () => Math.floor(Math.random()*10 + 5));
+
+  // ——— 2) Початкові лейбли та дані ———
+  const accLabels = accuracySeries.slice(0, initialCount).map(p => fmtTime(p.t));
+  const errLabels = errorSeries.slice(0, initialCount).map(p => fmtTime(p.t));
+  const corLabels = corrSeries.slice(0, initialCount).map(p => fmtTime(p.t));
+  const histLabels = ['Клас 1','Клас 2','Клас 3','Клас 4','Клас 5'];
+
+  // ——— 3) Створюємо три “живі” графіки + гістограму ———
+  chartInstances.accuracy = new Chart(
+    document.getElementById('accuracyChart'), {
+      type: 'line',
+      data: {
+        labels: accLabels,
+        datasets: [{ label: 'Точність (%)', data: accuracySeries.slice(0,initialCount).map(p=>p.v), fill: true, tension: 0.4 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    }
+  );
+
+  chartInstances.errorCount = new Chart(
+    document.getElementById('errorCountChart'), {
+      type: 'line',
+      data: {
+        labels: errLabels,
+        datasets: [{ label: 'Помилки', data: errorSeries.slice(0,initialCount).map(p=>p.v) }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    }
+  );
+
+  chartInstances.correlation = new Chart(
+    document.getElementById('correlationChart'), {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Вага vs Зусилля',
+          data: corrSeries.slice(0,initialCount).map(p=>({ x: p.x, y: p.y }))
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    }
+  );
+
+  chartInstances.weightHist = new Chart(
+    document.getElementById('weightHistChart'), {
+      type: 'bar',
+      data: {
+        labels: histLabels,
+        datasets: [{ label: 'К-ть виробів', data: histCounts }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    }
+  );
+
+  // ——— 4) Живе додавання точок, щосекунди ———
+  let next = initialCount;
+  const timer = setInterval(() => {
+    if (next >= total) {
+      clearInterval(timer);
+      return;
+    }
+
+    // accuracy
+    {
+      const p = accuracySeries[next];
+      const ch = chartInstances.accuracy;
+      ch.data.labels.push(fmtTime(p.t));
+      ch.data.datasets[0].data.push(p.v);
+      ch.update();
+    }
+    // errors
+    {
+      const p = errorSeries[next];
+      const ch = chartInstances.errorCount;
+      ch.data.labels.push(fmtTime(p.t));
+      ch.data.datasets[0].data.push(p.v);
+      ch.update();
+    }
+    // correlation
+    {
+      const p = corrSeries[next];
+      const ch = chartInstances.correlation;
+      ch.data.datasets[0].data.push({ x: p.x, y: p.y });
+      ch.update();
+    }
+    // гістограма: випадково інкрементуємо один із 5 класів
+    {
+      const idx = Math.floor(Math.random() * histCounts.length);
+      histCounts[idx]++;
+      const ch = chartInstances.weightHist;
+      ch.data.datasets[0].data = histCounts;
+      ch.update();
+    }
+
+    next++;
+  }, 2000);
 }
 
 
@@ -130,7 +250,7 @@ function addNextToCharts() {
       .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp))
       .map(r => ({ v: +r.value, t: r.timestamp, batchId: r.batchId }));
 
-    const chunk = series.slice(cfg.nextIndex, cfg.nextIndex + 5);
+    const chunk = series.slice(cfg.nextIndex, cfg.nextIndex + 1);
     if (!chunk.length) return;
 
     // Оновлення batchLabels
@@ -410,7 +530,41 @@ document.addEventListener('DOMContentLoaded', async()=>{
     });
   }
   
-  initAnalyticsCharts();
+  await initAnalyticsCharts();
+  initCharts();
+
+  // 5) Налаштування вкладок у Аналітиці
+  const tabSensorsBtn = document.getElementById('tabSensors');
+  const tabSystemBtn  = document.getElementById('tabSystem');
+  const sensorsGrid   = document.getElementById('analyticsSensors');
+  const systemGrid    = document.getElementById('analyticsSystem');
+
+  // початковий стан
+  sensorsGrid.classList.remove('hidden');
+  systemGrid.classList.add('hidden');
+  tabSensorsBtn.classList.add('active');
+  tabSystemBtn.classList.remove('active');
+
+  tabSensorsBtn.addEventListener('click', () => {
+    tabSensorsBtn.classList.add('active');
+    tabSystemBtn .classList.remove('active');
+    sensorsGrid .classList.remove('hidden');
+    systemGrid  .classList.add('hidden');
+    // resize сенсорних графіків
+    ['tempChart','weightChart','forceChart','humidityChart']
+      .forEach(id => chartInstances[id].resize());
+  });
+
+  tabSystemBtn.addEventListener('click', () => {
+    tabSystemBtn .classList.add('active');
+    tabSensorsBtn.classList.remove('active');
+    systemGrid  .classList.remove('hidden');
+    sensorsGrid .classList.add('hidden');
+    // resize системних графіків
+    ['accuracyChart','errorCountChart','weightHistChart','correlationChart']
+      .forEach(id => chartInstances[id].resize());
+  });
+
   showSection('smart');
   enableSystem();          // <<< важливо!
 
@@ -423,9 +577,9 @@ document.addEventListener('DOMContentLoaded', async()=>{
   enableBtn  .addEventListener('click', enableSystem);
   disableBtn .addEventListener('click', disableSystem);
   
+  
 
-
-    // 7) Додати новий сенсор
+  // 7) Додати новий сенсор
   const addBtn = document.getElementById('addSensorBtn');
   if (addBtn) {
     addBtn.addEventListener('click', async () => {
