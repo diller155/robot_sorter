@@ -210,7 +210,7 @@
       "timestamp": "2025-05-22T16:39:14.343Z",
       "sensor_type": "Температура",
       "icon": "🌡️",
-      "value": "52.1",
+      "value": "52.2",
       "unit": "°C",
       "warn": 60
     },
@@ -685,7 +685,7 @@
       "timestamp": "2025-05-22T16:39:44.375Z",
       "sensor_type": "Температура",
       "icon": "🌡️",
-      "value": "57.1",
+      "value": "60",
       "unit": "°C",
       "warn": 60
     },
@@ -780,7 +780,7 @@
       "timestamp": "2025-05-22T16:39:50.377Z",
       "sensor_type": "Температура",
       "icon": "🌡️",
-      "value": "51.7",
+      "value": "51.6",
       "unit": "°C",
       "warn": 60
     },
@@ -1442,9 +1442,157 @@
   ],
   "settings": [],
   "system_logs": [
-    
+    {
+      "id": "Mtsabw5Pc9iiF7VWczvIX",
+      "timestamp": "2025-05-23T10:10:56.765Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "1wLc3-erUZNTiD0dQ2n41",
+      "timestamp": "2025-05-23T10:20:26.791Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "zEtKkWr6MV3urUnE6AMlk",
+      "timestamp": "2025-05-23T10:21:13.376Z",
+      "message": "Система вимкнена",
+      "level": "warning"
+    },
+    {
+      "id": "4xoYBwYwebGG5nL52ez6M",
+      "timestamp": "2025-05-23T10:21:22.651Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "dtc1FXW1p3wFz-VdyKBh9",
+      "timestamp": "2025-05-23T10:21:49.044Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "LamB8hLufih6xjUS6h5qW",
+      "timestamp": "2025-05-23T10:29:51.177Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "57gxrnslPaO5mwqZUEOjw",
+      "timestamp": "2025-05-23T10:33:19.588Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "M-V-xCiFB5X_VBMNR2TAr",
+      "timestamp": "2025-05-23T10:42:17.317Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "m5irZYexw6dsRe_W8e-bv",
+      "timestamp": "2025-05-23T10:42:24.139Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "dEve7qTwnVr7QiyjJZCOD",
+      "timestamp": "2025-05-23T10:47:11.081Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "8Bh9V0hQM-w6QeamBUjRF",
+      "timestamp": "2025-05-23T11:05:13.134Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "B4LVXP-1cYdIibPaNyGEh",
+      "timestamp": "2025-05-23T11:06:03.638Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "uwxwyIBI1pcH3KIMYljx4",
+      "timestamp": "2025-05-23T11:08:33.027Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "UQuZPWy-O5tGRZdO9sQti",
+      "timestamp": "2025-05-23T11:09:44.509Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "dS_NamUtLbfiDf2EKJD_n",
+      "timestamp": "2025-05-23T11:09:50.291Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    },
+    {
+      "id": "Fpr5YjbzdB9I3KuQziLXm",
+      "timestamp": "2025-05-23T11:10:15.362Z",
+      "message": "Система увімкнена",
+      "level": "info"
+    }
   ],
   "sort_events": [
-    
+    {
+      "id": "JHHMzMVqvcix6R_b9zEzS",
+      "timestamp": "2025-05-23T10:10:58.265Z",
+      "weight": 228,
+      "force": 10.55,
+      "shape": "Кругла",
+      "result": "accepted",
+      "note": ""
+    },
+    {
+      "id": "0PamEGN9K7Nvm70iFfCaH",
+      "timestamp": "2025-05-23T10:10:59.108Z",
+      "weight": 497,
+      "force": 11.56,
+      "shape": "Квадратна",
+      "result": "warning",
+      "note": "Форма: Квадратна"
+    },
+    {
+      "id": "zoV3kRhzx6MJcSLZAoaSG",
+      "timestamp": "2025-05-23T10:20:37.160Z",
+      "weight": 384,
+      "force": 8.99,
+      "shape": "Неправильна",
+      "result": "warning",
+      "note": "Форма: Неправильна"
+    },
+    {
+      "id": "RwydYN6IcL4BZqGobGUmX",
+      "timestamp": "2025-05-23T10:21:30.774Z",
+      "weight": 545,
+      "force": 8.65,
+      "shape": "Квадратна",
+      "result": "warning",
+      "note": "Форма: Квадратна"
+    },
+    {
+      "id": "FsMRMgAyXh4ZYCrPqyYbh",
+      "timestamp": "2025-05-23T10:21:31.225Z",
+      "weight": 243,
+      "force": 11.84,
+      "shape": "Квадратна",
+      "result": "warning",
+      "note": "Форма: Квадратна"
+    },
+    {
+      "id": "FyN7o4P-LIV8q5ovz-ZcQ",
+      "timestamp": "2025-05-23T11:10:08.215Z",
+      "weight": 321,
+      "force": 8.18,
+      "shape": "Кругла",
+      "result": "accepted",
+      "note": ""
+    }
   ]
 }

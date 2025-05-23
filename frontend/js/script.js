@@ -1,5 +1,7 @@
 import { apiFetch } from './api.js';
 
+
+
 // DOM-елементи
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('nav a');
@@ -9,15 +11,21 @@ const enableBtn   = document.getElementById('enableSystemBtn');
 const disableBtn  = document.getElementById('disableSystemBtn');
 const notificationContainer = document.getElementById('notification-container');
 
+
+
 let sensorBatches = [];    // масив масивів
 let batchIds       = [];   // список batchId, відсортований за зростанням
 let currentBatch   = 0;    // індекс у списку batchIds
 let sensorTimer    = null;
 
+
 // Стан системи
 let systemActive    = false;
 let sensorInterval  = null;
 const chartInstances = {};
+// зверху, поряд із іншими let/const
+let conveyorPaused = false;
+
 
 // Підтягнути CSS-змінну --warning
 const cssVars     = getComputedStyle(document.documentElement);
@@ -95,6 +103,7 @@ function showNextBatch() {
   const batch = sensorBatches[currentBatch];
   const grid  = document.getElementById('sensorGrid');
   grid.innerHTML = '';
+  
   batch.forEach(s => {
     const danger = s.warn !== undefined && +s.value > s.warn ? ' danger' : '';
     const card = document.createElement('div');
@@ -104,10 +113,17 @@ function showNextBatch() {
       <div class="sensor-value">${s.value} ${s.unit}</div>
     `;
     grid.appendChild(card);
+    if (window.APP_ROLE === 'admin' && conveyorPaused) {
+    const actions = document.createElement('div');
+    actions.className = 'sensor-actions';
+    actions.innerHTML = `<button class="editBtn" data-id="${s.id}">✏️ Редагувати</button>`;
+    card.appendChild(actions);
+}
   });
   document.getElementById('batchLabel').textContent = `Об’єкт #${batchIds[currentBatch]}`;
   currentBatch = (currentBatch + 1) % sensorBatches.length;
 }
+
 
 function setSensorInterval() {
   clearInterval(sensorTimer);
@@ -115,6 +131,7 @@ function setSensorInterval() {
   document.getElementById('sensorIntervalLabel').textContent = sec;
   sensorTimer = setInterval(showNextBatch, sec * 1000);
 }
+
 
 // 3) Розумне сортування + POST в sort_events
 async function smartSort() {
@@ -172,6 +189,7 @@ async function loadSortLog() {
     showNotification('Не вдалося завантажити журнал сортувань', 2000);
   }
 }
+
 
 // 6) Логування системних подій
 async function logSystem(message, level='info') {
@@ -335,16 +353,17 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
   // ініціалізація кнопки паузи
   const toggleBtn = document.getElementById('toggleConveyorBtn');
-  let conveyorPaused = false;
   toggleBtn.addEventListener('click', () => {
-    conveyorPaused = !conveyorPaused;
-    if (conveyorPaused) {
-      clearInterval(sensorTimer);
-      toggleBtn.textContent = '▶️ Запустити конвеєр';
-    } else {
-      setSensorInterval();
-      toggleBtn.textContent = '⏸️ Пауза конвеєра';
-    }
+  conveyorPaused = !conveyorPaused;
+  if (conveyorPaused) {
+    clearInterval(sensorTimer);
+    showNextBatch();               // ⬅️ Ось ця лінійка
+    toggleBtn.textContent = '▶️ Запустити конвеєр';
+  } else {
+    showNextBatch();               // потрібно і тут, щоб прибрати кнопки
+    setSensorInterval();
+    toggleBtn.textContent = '⏸️ Пауза конвеєра';
+  }
   });
 
   // ————— Слайдер для інтервалу оновлення сенсорів —————
@@ -395,33 +414,24 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
   // 8) Редагувати та видаляти — делегуємо по всьому body
   document.body.addEventListener('click', async e => {
-    const edit = e.target.closest('.editBtn');
-    if (edit) {
-      const id = edit.dataset.id;
-      const newValue = prompt('Нове значення:');
-      if (newValue == null) return;
-      try {
-        await apiFetch(`/sensor_data/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify({ value: newValue })
-        });
-        showNotification('Значення змінено');
-      } catch {
-        showNotification('Не вдалося змінити значення');
-      }
-      return;
-    }
-    const del = e.target.closest('.deleteBtn');
-    if (del) {
-      const id = del.dataset.id;
-      if (!confirm('Видалити цей сенсор?')) return;
-      try {
-        await apiFetch(`/sensor_data/${id}`, { method: 'DELETE' });
-        showNotification('Сенсор видалено');
-      } catch {
-        showNotification('Не вдалося видалити сенсор');
-      }
-    }
-  });
+  const editBtn = e.target.closest('.editBtn');
+  if (!editBtn) return;
+
+  const id = editBtn.dataset.id;
+  const newValue = prompt('Введіть нове значення сенсора:');
+  if (newValue == null) return;
+
+  try {
+    await apiFetch(`/sensor_data/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ value: newValue })
+    });
+    showNotification('Значення оновлено');
+    // оновимо поточну картку
+    showNextBatch();
+  } catch {
+    showNotification('Не вдалося оновити значення', 2000);
+  }
+});
 
 });
